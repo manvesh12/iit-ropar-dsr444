@@ -349,6 +349,7 @@ function initAuctionTable() {
     <td ${cEd}>Running as per schedule</td>
     <td style="${isReadOnly ? 'display:none;' : ''}"><button class="btn btn-xs btn-danger" onclick="delRow(this)" style="display:inline-flex;align-items:center;justify-content:center;padding:4px;"><i data-lucide="trash-2" style="width:12px;height:12px;"></i></button></td>
   </tr>`;
+
   if (window.initLucide) window.initLucide();
 }
 
