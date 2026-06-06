@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1780161308845,
+    "title": "District Survey Report — Jalandhar",
+    "district": "Jalandhar",
+    "year": "2025-26",
+    "mineral": "Sand",
+    "rivers": "Not specified",
+    "progress": 0,
+    "status": "Not Completed",
+    "createdAt": "May 30, 2026",
+    "signatures": 0,
+    "anx4PdfName": "Annexure_IV_Transportation_Routes (10) (1).pdf",
+    "anx3PdfName": "Annexure_IV_Transportation_Routes (10).pdf",
+    "anx2PdfName": "Annexure_IV_Transportation_Routes (10).pdf"
+  },
+  {
+    "id": 1780160448766,
+    "title": "District Survey Report — Mansa",
+    "district": "Mansa",
+    "year": "2025-26",
+    "mineral": "Sand",
+    "rivers": "Not specified",
+    "progress": 0,
+    "status": "Not Completed",
+    "createdAt": "May 30, 2026",
+    "signatures": 0
+  },
+  {
+    "id": 1780158745255,
+    "title": "District Survey Report — Mansa",
+    "district": "Mansa",
+    "year": "2025-26",
+    "mineral": "Sand",
+    "rivers": "Not specified",
+    "progress": 0,
+    "status": "Not Completed",
+    "createdAt": "May 30, 2026",
+    "signatures": 0
+  },
+  {
+    "id": 1780158518632,
+    "title": "District Survey Report — Jalandhar",
+    "district": "Jalandhar",
+    "year": "2025-26",
+    "mineral": "Sand",
+    "rivers": "Not specified",
+    "progress": 0,
+    "status": "Not Completed",
+    "createdAt": "May 30, 2026",
+    "signatures": 0
+  },
+  {
+    "id": 1780157910784,
+    "title": "District Survey Report — Mansa",
+    "district": "Mansa",
+    "year": "2025-26",
+    "mineral": "Sand",
+    "rivers": "Not specified",
+    "progress": 0,
+    "status": "Not Completed",
+    "createdAt": "May 30, 2026",
+    "signatures": 0,
+    "annexure3PdfName": "Annexure_III_Cluster_Details (1).pdf",
+    "anx2PdfName": "Annexure_III_Cluster_Details (1).pdf"
+  },
+  {
+    "id": 1780156234777,
+    "title": "District Survey Report — Ludhiana",
+    "district": "Ludhiana",
+    "year": "2025-26",
+    "mineral": "Sand",
+    "rivers": "Not specified",
+    "progress": 0,
+    "status": "Not Completed",
+    "createdAt": "May 30, 2026",
+    "signatures": 0,
+    "annexure3PdfName": "Annexure_II_Mining_Leases (9).pdf"
+  }
+]

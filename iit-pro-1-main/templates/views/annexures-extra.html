@@ -1,0 +1,356 @@
+        <!-- ═══ ANNEXURES EXTRA ═══ -->
+        <div id="view-annexures-extra" class="view">
+          <div class="header-row">
+            <div>
+              <div class="page-title">Additional Annexures</div>
+              <div class="page-sub">Block Sand Ghats Coordinates, Bench Marks, CORS Stations, Final Cluster Details,
+                Patta Lands</div>
+            </div>
+          </div>
+          <div style="margin-bottom:12px">
+            <div class="card">
+              <div class="card-hd">
+                <div class="card-title">Upload Excel to Specific Table</div>
+              </div>
+              <div class="card-bd">
+                <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+                  <select id="table-upload-select"
+                    style="min-width:260px;padding:8px;border:1px solid var(--border);border-radius:6px">
+                    <option value="anx1-rivers">Annexure I — Rivers</option>
+                    <option value="anx1-desilt">Annexure I — De-Siltation</option>
+                    <option value="anx1-patta">Annexure I — Patta Lands</option>
+                    <option value="anx1-msand">Annexure I — M-Sand Plants</option>
+                    <option value="anx2-leases">Annexure II — Leases</option>
+                    <option value="anx3-clusters">Annexure III — Clusters</option>
+                    <option value="anx3-contiguous">Annexure III — Contiguous Clusters</option>
+                    <option value="anx4-routes">Annexure IV — Lease Routes</option>
+                    <option value="anx4-cluster-routes">Annexure IV — Cluster Routes</option>
+                    <option value="anx5-benchmarks">Annexure V — Bench Marks & CORS</option>
+                    <option value="anx6-final-clusters">Annexure VI — Final Clusters</option>
+                    <option value="anx7-patta-final">Annexure VII — Final Patta Lands</option>
+                  </select>
+                  <label class="btn btn-excel-upload btn-sm"
+                    style="cursor:pointer; margin-bottom:0; display:inline-flex; align-items:center; gap:6px;">
+                    <i data-lucide="upload" style="width:14px; height:14px;"></i>
+                    <span>Upload Excel for Selected Table</span>
+                    <input type="file" accept=".xlsx,.xls" hidden onchange="handleTableUpload(event)">
+                  </label>
+                  <div style="font-size:12px;color:var(--text-faint)">Select table → Upload Excel sheet (first sheet
+                    will be used)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="feature-tabs">
+            <div class="feature-tab active" onclick="switchAnxTab('coords',this)">Block Sand Ghats Coords</div>
+            <div class="feature-tab" onclick="switchAnxTab('benchmark',this)">Bench Mark & CORS</div>
+            <div class="feature-tab" onclick="switchAnxTab('final-clusters',this)">Final Cluster Details</div>
+            <div class="feature-tab" onclick="switchAnxTab('patta-final',this)">Final Patta Lands</div>
+            <div class="feature-tab" onclick="switchAnxTab('desilt-final',this)">Final De-Siltation</div>
+          </div>
+          <div id="anx-tab-coords">
+            <div class="card">
+              <div class="card-hd">
+                <div class="card-title">Final Block Sand Ghats Coordinates</div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <button class="btn btn-excel-template btn-xs" onclick="toast('Template downloaded','success')"
+                    style="display:inline-flex; align-items:center; gap:4px;">
+                    <i data-lucide="file-spreadsheet" style="width:12px; height:12px;"></i>
+                    <span>Excel</span>
+                  </button>
+                  <button class="btn btn-pdf-upload btn-xs" onclick="exportAnxPDF('coords')"
+                    style="display:inline-flex; align-items:center; gap:4px;">
+                    <i data-lucide="file-text" style="width:12px; height:12px;"></i>
+                    <span>PDF</span>
+                  </button>
+                </div>
+              </div>
+              <div class="card-bd">
+                <div class="tbl-wrap">
+                  <table class="anx-tbl" id="anx-coords-tbl" style="min-width:900px">
+                    <thead>
+                      <tr>
+                        <th>Sl.No.</th>
+                        <th>River Details</th>
+                        <th>Sand Bar Code</th>
+                        <th>Lease Details</th>
+                        <th>Area (Ha)</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td contenteditable>1</td>
+                        <td contenteditable>Sutlej</td>
+                        <td contenteditable>JL-ST-01</td>
+                        <td contenteditable>Jalandhar Sutlej-1<br>Vill-Kadiana, Block-Phillaur</td>
+                        <td contenteditable>12.50</td>
+                        <td contenteditable class="coord-input">31°04'48.886"N<br>31°04'18.121"N<br>31°04'07.214"N</td>
+                        <td contenteditable class="coord-input">75°53'39.686"E<br>75°53'37.489"E<br>75°53'34.086"E</td>
+                        <td>
+                          <button class="btn btn-xs btn-danger" onclick="delRow(this)"
+                            style="display:inline-flex; align-items:center; justify-content:center; padding:4px;">
+                            <i data-lucide="trash-2" style="width:12px; height:12px;"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <button class="btn btn-xs btn-outline"
+                  style="margin-top:8px; display:inline-flex; align-items:center; gap:6px;"
+                  onclick="addRow('anx-coords-tbl',['','','','','','','','<button class=\'btn btn-xs btn-danger\' onclick=\'delRow(this)\' style=\'display:inline-flex;align-items:center;justify-content:center;padding:4px;\'><i data-lucide=\'trash-2\' style=\'width:12px;height:12px;\'></i\></button>']);">
+                  <i data-lucide="plus" style="width:12px; height:12px;"></i>
+                  <span>Add Row</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div id="anx-tab-benchmark" style="display:none">
+            <div class="g2">
+              <div class="card">
+                <div class="card-hd">
+                  <div class="card-title">Bench Mark Table</div>
+                </div>
+                <div class="card-bd">
+                  <div class="tbl-wrap">
+                    <table class="anx-tbl" id="anx-benchmark-tbl" style="min-width:800px">
+                      <thead>
+                        <tr>
+                          <th>Permanent Bench Mark</th>
+                          <th>Coordinates</th>
+                          <th>Elevation (m)</th>
+                          <th>Sandbar Code</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td contenteditable>BM-JAL-01</td>
+                          <td contenteditable class="coord-input">31.025890 N<br>75.304797 E</td>
+                          <td contenteditable>236.45</td>
+                          <td contenteditable>JL-ST-01 to JL-ST-05</td>
+                          <td><button class="btn btn-xs btn-danger" onclick="delRow(this)"
+                              style="display:inline-flex; align-items:center; justify-content:center; padding:4px;"><i
+                                data-lucide="trash-2" style="width:12px; height:12px;"></i></button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <button class="btn btn-xs btn-outline"
+                    style="margin-top:8px; display:inline-flex; align-items:center; gap:6px;"
+                    onclick="addRow('anx-benchmark-tbl',['','','','','<button class=\'btn btn-xs btn-danger\' onclick=\'delRow(this)\' style=\'display:inline-flex;align-items:center;justify-content:center;padding:4px;\'><i data-lucide=\'trash-2\' style=\'width:12px;height:12px;\'></i\></button>']);">
+                    <i data-lucide="plus" style="width:12px; height:12px;"></i>
+                    <span>Add Row</span>
+                  </button>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-hd">
+                  <div class="card-title">Survey of India (CORS Station)</div>
+                </div>
+                <div class="card-bd">
+                  <div class="tbl-wrap">
+                    <table class="anx-tbl" id="anx-cors-tbl" style="min-width:800px">
+                      <thead>
+                        <tr>
+                          <th>CORS Station Name</th>
+                          <th>Lat</th>
+                          <th>Lon</th>
+                          <th>Height (m)</th>
+                          <th>Station Code</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td contenteditable>ANANDPURSAHIB</td>
+                          <td contenteditable class="coord-input">N 31°14'31.68332"</td>
+                          <td contenteditable class="coord-input">E 76°29'17.88727"</td>
+                          <td contenteditable>263.387</td>
+                          <td contenteditable>ANAD</td>
+                          <td><button class="btn btn-xs btn-danger" onclick="delRow(this)"
+                              style="display:inline-flex; align-items:center; justify-content:center; padding:4px;"><i
+                                data-lucide="trash-2" style="width:12px; height:12px;"></i></button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <button class="btn btn-xs btn-outline"
+                    style="margin-top:8px; display:inline-flex; align-items:center; gap:6px;"
+                    onclick="addRow('anx-cors-tbl',['','','','','','<button class=\'btn btn-xs btn-danger\' onclick=\'delRow(this)\' style=\'display:inline-flex;align-items:center;justify-content:center;padding:4px;\'><i data-lucide=\'trash-2\' style=\'width:12px;height:12px;\'></i\></button>']);">
+                    <i data-lucide="plus" style="width:12px; height:12px;"></i>
+                    <span>Add Row</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="anx-tab-final-clusters" style="display:none">
+            <div class="card">
+              <div class="card-hd">
+                <div class="card-title">Final Cluster Details</div>
+              </div>
+              <div class="card-bd">
+                <div class="tbl-wrap">
+                  <table class="anx-tbl" id="anx-final-clusters-tbl" style="min-width:1000px">
+                    <thead>
+                      <tr>
+                        <th>River Name</th>
+                        <th>Cluster No.</th>
+                        <th>Lease No.</th>
+                        <th>Location</th>
+                        <th>Village</th>
+                        <th>Area (Ha)</th>
+                        <th>Total Excav. (MT)</th>
+                        <th>Mineral Excav. @60% (MT)</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td contenteditable>Sutlej</td>
+                        <td contenteditable>1</td>
+                        <td contenteditable>NPRO_JL_PL_ST_01<br>NPRO_JL_PL_ST_02</td>
+                        <td><select>
+                            <option>Riverbed</option>
+                            <option>Patta Land</option>
+                          </select></td>
+                        <td contenteditable>Kadiana,<br>Phillaur</td>
+                        <td contenteditable oninput="calcClusterRow(this)">45.20</td>
+                        <td contenteditable oninput="calcClusterRow(this)">1074334.80</td>
+                        <td class="anx3-mineral">644600.88</td>
+                        <td><button class="btn btn-xs btn-danger" onclick="delRow(this)"
+                            style="display:inline-flex; align-items:center; justify-content:center; padding:4px;"><i
+                              data-lucide="trash-2" style="width:12px; height:12px;"></i></button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <button class="btn btn-xs btn-outline"
+                  style="margin-top:8px; display:inline-flex; align-items:center; gap:6px;"
+                  onclick="addAnx3Row('anx-final-clusters-tbl')">
+                  <i data-lucide="plus" style="width:12px; height:12px;"></i>
+                  <span>Add Row</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div id="anx-tab-patta-final" style="display:none">
+            <div class="card">
+              <div class="card-hd">
+                <div class="card-title">Final Patta Lands / Khatedari Land (Existing & Proposed)</div>
+              </div>
+              <div class="card-bd">
+                <div class="tbl-wrap">
+                  <table class="anx-tbl" id="anx-patta-final-tbl" style="min-width:1200px">
+                    <thead>
+                      <tr>
+                        <th>Sl.No.</th>
+                        <th>Owner</th>
+                        <th>Sy.No (Khasra)</th>
+                        <th>Area</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                        <th>District</th>
+                        <th>Tehsil</th>
+                        <th>Village</th>
+                        <th>Total Reserve (MT) @BD 1.52</th>
+                        <th>Mineral Mined (MT) @60%</th>
+                        <th>Existing/Proposed</th>
+                        <th>Remarks</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td contenteditable>1</td>
+                        <td contenteditable>Jaswinder Singh</td>
+                        <td contenteditable>123/1<br>124/2</td>
+                        <td contenteditable>2.50</td>
+                        <td contenteditable class="coord-input">31°00'56"N</td>
+                        <td contenteditable class="coord-input">75°54'59"E</td>
+                        <td contenteditable>Jalandhar</td>
+                        <td contenteditable>Phillaur</td>
+                        <td contenteditable>Kadiana</td>
+                        <td contenteditable>57000</td>
+                        <td contenteditable>34200</td>
+                        <td><select>
+                            <option>Existing</option>
+                            <option>Proposed</option>
+                          </select></td>
+                        <td contenteditable>—</td>
+                        <td><button class="btn btn-xs btn-danger" onclick="delRow(this)"
+                            style="display:inline-flex; align-items:center; justify-content:center; padding:4px;"><i
+                              data-lucide="trash-2" style="width:12px; height:12px;"></i></button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <button class="btn btn-xs btn-outline"
+                  style="margin-top:8px; display:inline-flex; align-items:center; gap:6px;"
+                  onclick="toast('Row added','info')">
+                  <i data-lucide="plus" style="width:12px; height:12px;"></i>
+                  <span>Add Row</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div id="anx-tab-desilt-final" style="display:none">
+            <div class="card">
+              <div class="card-hd">
+                <div class="card-title">Final De-Siltation Locations (Existing & Proposed)</div>
+              </div>
+              <div class="card-bd">
+                <div class="tbl-wrap">
+                  <table class="anx-tbl" id="anx-desilt-final-tbl" style="min-width:1000px">
+                    <thead>
+                      <tr>
+                        <th>Name of Reservoir/Dams</th>
+                        <th>Controlled By</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                        <th>District</th>
+                        <th>Tehsil</th>
+                        <th>Village</th>
+                        <th>Size (Ha)</th>
+                        <th>Quantity MT/Year</th>
+                        <th>Existing/Proposed</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td contenteditable>Harike Dam</td>
+                        <td contenteditable>State Govt.</td>
+                        <td contenteditable class="coord-input">31°10'22"N</td>
+                        <td contenteditable class="coord-input">74°57'48"E</td>
+                        <td contenteditable>Ferozepur</td>
+                        <td contenteditable>Harike</td>
+                        <td contenteditable>Harike</td>
+                        <td contenteditable>10.93</td>
+                        <td contenteditable>15000</td>
+                        <td><select>
+                            <option>Existing</option>
+                            <option>Proposed</option>
+                          </select></td>
+                        <td><button class="btn btn-xs btn-danger" onclick="delRow(this)"
+                            style="display:inline-flex; align-items:center; justify-content:center; padding:4px;"><i
+                              data-lucide="trash-2" style="width:12px; height:12px;"></i></button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <button class="btn btn-xs btn-outline"
+                  style="margin-top:8px; display:inline-flex; align-items:center; gap:6px;"
+                  onclick="toast('Row added','info')">
+                  <i data-lucide="plus" style="width:12px; height:12px;"></i>
+                  <span>Add Row</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+

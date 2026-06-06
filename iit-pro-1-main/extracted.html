@@ -1,0 +1,2955 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <meta name="color-scheme" content="light" />
+  <title>DSR Portal ΓÇö IIT Ropar | District Survey Report Automation System</title>
+  <script src="js/theme.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.363.0/dist/umd/lucide.min.js"></script>
+</head>
+
+<body class="sidebar-hidden">
+  
+  <!-- UNIVERSAL TRANSLUCENT BACKGROUND WATERMARK -->
+  <img src="logo/CoE-SEnSRS.jpeg"
+    style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 800px; height: 800px; max-width: 90%; max-height: 90%; opacity: 0.08; pointer-events: none; z-index: 0; object-fit: contain;"
+    alt="Watermark">
+
+  <!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+     SCREEN 1 ΓÇö AUTH
+ ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
+
+  <div id="screen-auth" class="screen active" style="position:relative;">
+
+    <!-- Theme Toggle -->
+    <button type="button" class="auth-theme-toggle" id="auth-theme-toggle" data-theme-toggle onclick="toggleDarkMode()">
+      <i data-lucide="moon"></i>
+    </button>
+
+    <!-- Top Branding -->
+    <header
+      style="display:flex; justify-content:space-between; align-items:center; padding:25px 60px; background:var(--card); position:absolute; top:0; left:0; width:100%; z-index:100; border-bottom:1px solid var(--border); box-shadow:0 4px 12px rgba(0,0,0,0.05); box-sizing:border-box;">
+      <div class="logo"
+        style="display:flex; align-items:center; gap:15px; font-size:52px; font-weight:800; color:var(--text);">
+        <img src="logo/CoE-SEnSRS.jpeg" alt="DSR Logo"
+          style="width:70px; height:70px; object-fit:contain; border-radius:12px;">
+        <span>DSR REPORT</span>
+      </div>
+      <nav style="display:flex; gap:12px;">
+        <a href="home.html"
+          style="text-decoration:none; color:var(--text); padding:10px 18px; border:1px solid var(--border); border-radius:10px; background:var(--card); font-size:16px; font-weight:500; transition:all 0.2s;"
+          onmouseover="this.style.background='var(--off)'" onmouseout="this.style.background='var(--card)'">Home</a>
+        <a href="#"
+          style="text-decoration:none; color:var(--text); padding:10px 18px; border:1px solid var(--border); border-radius:10px; background:var(--card); font-size:16px; font-weight:500; transition:all 0.2s;"
+          onmouseover="this.style.background='var(--off)'" onmouseout="this.style.background='var(--card)'">Contact</a>
+      </nav>
+    </header>
+
+    <!-- Background -->
+    <div class="auth-bg">
+      <div class="auth-grid-lines"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="auth-wrap"
+      style="position:relative; z-index:10; justify-content: center; align-items: center; background: transparent; box-shadow: none;">
+
+      <!-- CENTERED LOGIN CARD -->
+      <div class="auth-right"
+        style="width: 100%; max-width: 440px; margin: 0 auto; animation: fadeInUp 0.6s ease-out forwards; opacity: 0;">
+
+        <div class="auth-tabs">
+          <div id="tab-btn-faculty" class="auth-tab active" onclick="switchAuthMode('faculty')">
+            Faculty / Staff
+
+          </div>
+
+          <div id="tab-btn-authority" class="auth-tab" onclick="switchAuthMode('authority')">
+            Govt. Authority
+          </div>
+        </div>
+
+        <!-- Staff Login -->
+        <div id="auth-form-faculty" class="auth-form active">
+
+          <div class="auth-form-title">
+            Staff Portal
+          </div>
+
+          <div class="auth-form-sub">
+            Sign in to your DSR Coordinator / Reviewer account
+          </div>
+
+          <div class="f-field">
+            <label>Email Address</label>
+            <div class="input-wrap">
+              <input type="email" id="login-email" value="demo@iitropar.ac.in">
+            </div>
+          </div>
+
+          <div class="f-field">
+            <label style="display:flex; justify-content:space-between; width:100%;">
+              <span>Password</span>
+              <a href="#" onclick="alert('Password reset link sent to your email.'); return false;"
+                style="font-size: 12px; color: #2563eb; text-decoration: none; font-weight: 600;">Forgot?</a>
+            </label>
+            <div class="input-wrap">
+              <input type="password" id="login-pass" value="password123">
+            </div>
+          </div>
+
+          <div class="f-field">
+            <label>Login As</label>
+
+            <select id="login-role">
+              <option>Report Coordinator / Data Entry</option>
+              <option>Section Reviewer</option>
+              <option>System Administrator</option>
+            </select>
+          </div>
+          <div class="form-err" id="login-error" style="display:none; color:red; font-size:12px; margin-bottom:10px;">
+          </div>
+
+          <button class="btn-primary" onclick="doLogin()">
+            Login to Portal ΓåÆ
+          </button>
+
+          <div style="text-align:center; margin-top: 24px; font-size: 14px; color: var(--text-soft);">
+            Don't have an account? <a href="#" onclick="toggleSignUp(true); return false;"
+              style="color: #2563eb; font-weight: 700; text-decoration: none;">Sign Up</a>
+          </div>
+        </div>
+
+        <!-- Authority Login -->
+        <div id="auth-form-authority" class="auth-form">
+          <div class="auth-form-title">Govt. Portal</div>
+          <div class="auth-form-sub">Sign in with your NIC credentials</div>
+
+          <div class="f-field">
+            <label>NIC ID</label>
+            <div class="input-wrap">
+              <input type="text" id="auth-nic-id" value="NIC-8821">
+            </div>
+          </div>
+
+          <div class="f-field">
+            <label style="display:flex; justify-content:space-between; width:100%;">
+              <span>Security PIN</span>
+              <a href="#" onclick="alert('Please contact NIC Admin for PIN reset.'); return false;"
+                style="font-size: 12px; color: #2563eb; text-decoration: none; font-weight: 600;">Forgot PIN?</a>
+            </label>
+            <div class="input-wrap">
+              <input type="password" id="auth-security-pin" value="123456">
+              <button type="button" class="btn-reveal" onclick="togglePinReveal()"
+                style="position:absolute; right:16px; top:12px; background:none; border:none; color:var(--text-soft); cursor:pointer;">
+                <i data-lucide="eye" style="width:18px;height:18px;"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-err" id="auth-error" style="display:none;"></div>
+
+          <button class="btn-primary" onclick="doAuthorityVerify()" style="margin-top: 10px;">
+            Verify & Login ΓåÆ
+          </button>
+        </div>
+
+        <!-- Sign Up Form -->
+        <div id="auth-form-signup" class="auth-form" style="display:none;">
+          <div class="auth-form-title">Create Account</div>
+          <div class="auth-form-sub">Register as a new Coordinator / Staff</div>
+
+          <div class="f-field">
+            <label>Full Name</label>
+            <div class="input-wrap">
+              <input type="text" id="signup-name" placeholder="Enter your full name">
+            </div>
+          </div>
+
+          <div class="f-field">
+            <label>Email Address</label>
+            <div class="input-wrap">
+              <input type="email" id="signup-email" placeholder="name@domain.gov.in">
+            </div>
+          </div>
+
+          <div class="f-field">
+            <label>Create Password</label>
+            <div class="input-wrap">
+              <input type="password" id="signup-pass" placeholder="ΓÇóΓÇóΓÇóΓÇóΓÇóΓÇóΓÇóΓÇó">
+            </div>
+          </div>
+
+          <button class="btn-primary"
+            onclick="alert('Sign up request submitted for admin approval!'); toggleSignUp(false);"
+            style="margin-top: 10px;">
+            Register ΓåÆ
+          </button>
+
+          <div style="text-align:center; margin-top: 24px; font-size: 14px; color: var(--text-soft);">
+            Already have an account? <a href="#" onclick="toggleSignUp(false); return false;"
+              style="color: #2563eb; font-weight: 700; text-decoration: none;">Login</a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+     SCREEN 2 ΓÇö MAIN APP
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
+  <div id="screen-app" class="screen">
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar" onmouseenter="expandSidebar()" onmouseleave="collapseSidebar()">
+      <div class="sb-head">
+        <div class="sb-logo">
+          <div class="sb-logo-mark">
+            <img src="logo/CoE-SEnSRS.jpeg" alt="Logo">
+          </div>
+          <div class="sb-logo-text">
+            <h2>DSR Portal</h2>
+            <p>IIT Ropar ┬╖ Punjab</p>
+          </div>
+        </div>
+      </div>
+      <div class="sb-user">
+        <div class="sb-avatar" id="sb-avatar">RK</div>
+        <div>
+          <div class="sb-uname" id="sb-uname">User Name</div>
+          <div class="sb-urole" id="sb-urole">Report Coordinator</div>
+        </div>
+      </div>
+      <nav class="sb-nav">
+        <div class="sb-section" id="overview-nav" style="display:none;">
+          <!-- Overview links moved to topbar -->
+        </div>
+        <div class="sb-section" id="report-nav" style="display:none">
+          <div class="sb-section-lbl">DSR Sections</div>
+          <button class="sb-item" onclick="showView('front-matter',this)"><span class="sb-ico"><i
+                data-lucide="file-text"></i></span>Front Matter</button>
+          <button class="sb-item" onclick="showView('chapters',this)"><span class="sb-ico"><i
+                data-lucide="book-open"></i></span>Chapters (10)</button>
+          <button class="sb-item" onclick="showView('plates',this)"><span class="sb-ico"><i
+                data-lucide="map"></i></span>Plate Section</button>
+          <button class="sb-item" onclick="showView('graphs',this)" style="padding-left: 24px; font-size: 11px;"><span
+              class="sb-ico" style="width: 24px; height: 24px; font-size: 11px;"><i
+                data-lucide="line-chart"></i></span>Cross Section Graphs</button>
+        </div>
+        <div class="sb-section" id="annexure-nav" style="display:none">
+          <div class="sb-section-lbl">Annexures</div>
+          <div style="position: relative;">
+            <button class="sb-item" onclick="toggleSubMenu('flyout-anx1'); showView('anx1',this)"><span class="sb-ico">Γàá</span>Annexure I ΓÇö Sources</button>
+            <div id="flyout-anx1" class="flyout-menu" style="display:none; position:absolute; left:calc(100% + 5px); top:0; background:var(--card); border:1px solid var(--border); border-radius:8px; padding:6px; box-shadow:0 4px 12px rgba(0,0,0,0.1); z-index:100; min-width:160px;">
+              <button class="sb-item" onclick="scrollToSection('anx1', 'anx1-rivers', this.parentElement.previousElementSibling); toggleSubMenu('flyout-anx1')" style="font-size: 12.5px; min-height: 32px; padding: 6px 12px;">a) Rivers</button>
+              <button class="sb-item" onclick="scrollToSection('anx1', 'anx1-desilt', this.parentElement.previousElementSibling); toggleSubMenu('flyout-anx1')" style="font-size: 12.5px; min-height: 32px; padding: 6px 12px;">b) De-Siltation</button>
+              <button class="sb-item" onclick="scrollToSection('anx1', 'anx1-patta', this.parentElement.previousElementSibling); toggleSubMenu('flyout-anx1')" style="font-size: 12.5px; min-height: 32px; padding: 6px 12px;">c) Patta Lands</button>
+              <button class="sb-item" onclick="scrollToSection('anx1', 'anx1-msand', this.parentElement.previousElementSibling); toggleSubMenu('flyout-anx1')" style="font-size: 12.5px; min-height: 32px; padding: 6px 12px;">d) M-Sand</button>
+            </div>
+          </div>
+          <div style="position: relative;">
+            <button class="sb-item" onclick="toggleSubMenu('flyout-anx2'); showView('anx2',this)"><span class="sb-ico">Γàí</span>Annexure II ΓÇö Leases</button>
+            <div id="flyout-anx2" class="flyout-menu" style="display:none; position:absolute; left:calc(100% + 5px); top:0; background:var(--card); border:1px solid var(--border); border-radius:8px; padding:6px; box-shadow:0 4px 12px rgba(0,0,0,0.1); z-index:100; min-width:160px;">
+              <button class="sb-item" onclick="scrollToSection('anx2', 'anx2-leases', this.parentElement.previousElementSibling); toggleSubMenu('flyout-anx2')" style="font-size: 12.5px; min-height: 32px; padding: 6px 12px;">Details of Leases</button>
+              <button class="sb-item" onclick="scrollToSection('anx2', 'anx2-patta', this.parentElement.previousElementSibling); toggleSubMenu('flyout-anx2')" style="font-size: 12.5px; min-height: 32px; padding: 6px 12px;">Details of Patta</button>
+              <button class="sb-item" onclick="scrollToSection('anx2', 'anx2-desilt', this.parentElement.previousElementSibling); toggleSubMenu('flyout-anx2')" style="font-size: 12.5px; min-height: 32px; padding: 6px 12px;">Details of De-siltation</button>
+              <button class="sb-item" onclick="scrollToSection('anx2', 'anx2-msand', this.parentElement.previousElementSibling); toggleSubMenu('flyout-anx2')" style="font-size: 12.5px; min-height: 32px; padding: 6px 12px;">Details of M-Sand</button>
+            </div>
+          </div>
+          <div style="position: relative;">
+            <button class="sb-item" onclick="toggleSubMenu('flyout-anx3'); showView('anx3',this)"><span class="sb-ico">Γàó</span>Annexure III ΓÇö Clusters</button>
+            <div id="flyout-anx3" class="flyout-menu" style="display:none; position:absolute; left:calc(100% + 5px); top:0; background:var(--card); border:1px solid var(--border); border-radius:8px; padding:6px; box-shadow:0 4px 12px rgba(0,0,0,0.1); z-index:100; min-width:160px;">
+              <button class="sb-item" onclick="scrollToSection('anx3', 'anx3-clusters', this.parentElement.previousElementSibling); toggleSubMenu('flyout-anx3')" style="font-size: 12.5px; min-height: 32px; padding: 6px 12px;">Clusters</button>
+              <button class="sb-item" onclick="scrollToSection('anx3', 'anx3-contiguous', this.parentElement.previousElementSibling); toggleSubMenu('flyout-anx3')" style="font-size: 12.5px; min-height: 32px; padding: 6px 12px;">Contiguous Clusters</button>
+            </div>
+          </div>
+          <div style="position: relative;">
+            <button class="sb-item" onclick="toggleSubMenu('flyout-anx4'); showView('anx4',this)"><span class="sb-ico">Γàú</span>Annexure IV ΓÇö Transport</button>
+            <div id="flyout-anx4" class="flyout-menu" style="display:none; position:absolute; left:calc(100% + 5px); top:0; background:var(--card); border:1px solid var(--border); border-radius:8px; padding:6px; box-shadow:0 4px 12px rgba(0,0,0,0.1); z-index:100; min-width:160px;">
+              <button class="sb-item" onclick="scrollToSection('anx4', 'individual-routes-container', this.parentElement.previousElementSibling); toggleSubMenu('flyout-anx4')" style="font-size: 12.5px; min-height: 32px; padding: 6px 12px;">Individual Routes</button>
+              <button class="sb-item" onclick="scrollToSection('anx4', 'cluster-routes-container', this.parentElement.previousElementSibling); toggleSubMenu('flyout-anx4')" style="font-size: 12.5px; min-height: 32px; padding: 6px 12px;">Cluster Routes</button>
+            </div>
+          </div>
+          <button class="sb-item" onclick="showView('anx5',this)"><span class="sb-ico">Γàñ</span>Annexure V ΓÇö Bench Mark &
+            CORS</button>
+          <button class="sb-item" onclick="showView('anx6',this)"><span class="sb-ico">ΓàÑ</span>Annexure VI ΓÇö Final
+            Cluster Details</button>
+          <button class="sb-item" onclick="showView('anx7',this)"><span class="sb-ico">Γàª</span>Annexure VII ΓÇö Final
+            Patta Lands</button>
+          <button class="sb-item" onclick="showView('annexures-extra',this)"><span class="sb-ico"><i
+                data-lucide="paperclip"></i></span>More Annexures</button>
+        </div>
+        <div class="sb-section" id="tables-nav" style="display:none">
+          <div class="sb-section-lbl">Data Tables</div>
+          <button class="sb-item" onclick="showView('demand-table',this)"><span class="sb-ico"><i
+                data-lucide="bar-chart-3"></i></span>Demand Table</button>
+          <button class="sb-item" onclick="showView('auction-table',this)"><span class="sb-ico"><i
+                data-lucide="landmark"></i></span>Auctioned Sites</button>
+          <button class="sb-item" onclick="showView('summary-table',this)"><span class="sb-ico"><i
+                data-lucide="pie-chart"></i></span>Source Summary</button>
+          <button class="sb-item" onclick="showView('benchmark-table',this)"><span class="sb-ico"><i
+                data-lucide="map-pin"></i></span>Bench Mark & CORS</button>
+        </div>
+        <div class="sb-section" id="finalize-nav" style="display:none">
+          <div class="sb-section-lbl">Finalize</div>
+          <button class="sb-item" onclick="showView('esign',this)"><span class="sb-ico"><i
+                data-lucide="pen-tool"></i></span>E-Signatures<span class="sb-badge sb-badge-red"
+              id="sb-pending-sigs">5</span></button>
+          <button class="btn sb-item" onclick="showView('generate',this)"><span class="sb-ico"><i
+                data-lucide="download"></i></span>Generate PDF</button>
+          <button class="sb-item" onclick="showView('history',this)"><span class="sb-ico"><i
+                data-lucide="history"></i></span>Report History</button>
+          <button class="sb-item" onclick="showView('users',this)"><span class="sb-ico"><i
+                data-lucide="users"></i></span>User Management</button>
+        </div>
+        <div class="sb-section" style="margin-top: auto; padding-top: 12px; border-top: 1px solid var(--border);">
+          <div class="sb-section-lbl"> Districts</div>
+          <div id="sidebar-districts-legend" style="display: flex; flex-direction: column; gap: 4px; padding: 4px 8px;">
+          </div>
+        </div>
+      </nav>
+      <div class="sb-bottom">
+        <div class="sb-status-row"><span class="status-dot"></span><span class="status-txt">EMGSM 2020 Compliant</span>
+        </div>
+        <button class="sb-logout" onclick="doLogout()"><i data-lucide="log-out"
+            style="width:14px;height:14px;margin-right:7px;"></i>Logout</button>
+      </div>
+    </aside>
+
+
+    <!-- TOPBAR -->
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="tb-left" style="display:flex;align-items:center;gap:32px;" onmouseenter="expandSidebar()"
+        onmouseleave="collapseSidebar()">
+        <!-- Sidebar Toggle -->
+        <button class="tb-action-btn" onclick="toggleSidebar()" title="Toggle Sidebar">
+          <i data-lucide="menu"></i>
+        </button>
+        <!-- Logo similar to home page -->
+        <div class="logo"
+          style="display:flex; align-items:center; gap:15px; font-size:52px; font-weight:800; color:var(--text); cursor:pointer;"
+          onclick="clearActiveProject(); showView('dashboard', null);">
+          <img src="logo/CoE-SEnSRS.jpeg" alt="DSR Logo"
+            style="width:70px; height:70px; object-fit:contain; border-radius:12px;">
+          <span>DSR REPORT</span>
+        </div>
+
+        <!-- Topbar Navigation -->
+        <nav class="tb-nav">
+          <button class="tb-nav-link active"
+            onclick="clearActiveProject(); showView('dashboard',this)">Dashboard</button>
+
+          <div class="tb-nav-dropdown">
+            <button class="tb-nav-link" onclick="showView('projects',this)">Projects <i data-lucide="chevron-down"
+                style="width:14px;height:14px;display:inline-block;vertical-align:middle;"></i></button>
+            <div class="tb-dropdown-menu" id="tb-projects-dropdown">
+              <a href="#" onclick="showView('projects',null); return false;">View All Projects</a>
+              <a href="#" onclick="newProjectModal(); return false;">+ Add New Project</a>
+            </div>
+          </div>
+
+          <button class="tb-nav-link" onclick="showView('workflow',this)">Report Workflow</button>
+        </nav>
+      </div>
+      <div class="tb-right">
+        <span class="tb-district" id="tb-district-badge"
+          style="border: 1px solid transparent; transition: all .3s;">Punjab</span>
+        <button type="button" class="tb-action-btn" id="dark-mode-toggle" data-theme-toggle onclick="toggleDarkMode()"
+          title="Toggle light/dark theme" aria-label="Toggle theme"
+          style="width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-right:8px;">
+          <i data-lucide="moon" style="width:16px;height:16px;"></i>
+        </button>
+        <button class="btn btn-outline btn-sm" style="display:inline-flex;align-items:center;gap:4px;"
+          onclick="showView('esign',null)"><i data-lucide="pen-tool" style="width:12px;height:12px;"></i>E-Sign</button>
+        <button class="btn btn-outline btn-sm" style="display:inline-flex;align-items:center;gap:4px;"
+          onclick="showView('generate',null)"><i data-lucide="download" style="width:12px;height:12px;"></i>PDF</button>
+        <button class="btn btn-saffron btn-sm" onclick="newProjectModal()">+ New Project</button>
+      </div>
+    </div>
+
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+      <div class="page-body">
+        <!-- ΓòÉΓòÉΓòÉ DASHBOARD ΓòÉΓòÉΓòÉ -->
+        <div id="view-dashboard" class="view active" style="position: relative; z-index: 1;">
+
+
+
+          <div class="hero-banner">
+
+            <!-- <img src="logo/COE-SENSRS-2.jpeg" alt="DSR Portal Banner" class="hero-image"> -->
+
+            <div class="hero-overlay">
+              <div class="hero-eyebrow">
+                Government of Punjab ┬╖ EMGSM 2020 ┬╖ IIT Ropar Research Cell
+              </div>
+
+              <div class="hero-title">
+                District Survey Report<br>
+                Automation Portal
+              </div>
+
+              <div class="hero-sub">
+                Prepare, review, and digitally sign DSRs for sand mining across all Punjab districts.
+              </div>
+
+              <div class="hero-actions">
+                <button class="btn btn-saffron" onclick="newProjectModal()">
+                  + Create New DSR Project
+                </button>
+
+                <button class="btn btn-outline" onclick="showView('projects',null)">
+                  View All Projects ΓåÆ
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- District Filter & Active District Selector -->
+          <div class="card"
+            style="margin-bottom:20px; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; background:var(--card); border:1px solid var(--border);">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <i data-lucide="filter" style="width:16px; height:16px; color:var(--text-soft);"></i>
+              <span
+                style="font-size:12.5px; font-weight:700; color:var(--text-mid); text-transform:uppercase; letter-spacing:.05em;">District
+                Context:</span>
+              <select id="dash-district-filter" onchange="filterDashboardByDistrict(this.value)"
+                style="padding:8px 16px; border:1px solid var(--border-2); border-radius:var(--r-md); background:var(--bg); color:var(--text); font-size:13.5px; font-weight:700; outline:none; cursor:pointer; transition:border-color .2s;">
+                <option value="ALL">All Districts (Punjab)</option>
+                <option>Jalandhar</option>
+                <option>Ludhiana</option>
+                <option>Mansa</option>
+                <option>Hoshiarpur</option>
+                <option>Pathankot</option>
+                <option>Rupnagar</option>
+                <option>Tarn Taran</option>
+              </select>
+            </div>
+            <div
+              style="font-size:13px; font-weight:600; color:var(--text-soft); display:flex; align-items:center; gap:8px;">
+              Active District Highlight: <span id="dash-active-district-badge" class="badge"
+                style="background:var(--off); color:var(--text-soft);">None</span>
+            </div>
+          </div>
+
+          <div class="g4" style="margin-bottom:20px">
+            <div class="stat-card" style="--accent:var(--teal);--icon-bg:rgba(12,122,114,.1)">
+              <div class="stat-accent"></div>
+              <div class="stat-icon"><i data-lucide="folder"></i></div>
+              <div class="stat-lbl">Total Projects</div>
+              <div class="stat-val" id="d-total">0</div>
+              <div class="stat-info">Active DSR projects</div>
+            </div>
+            <div class="stat-card" style="--accent:var(--green);--icon-bg:rgba(21,128,61,.1)">
+              <div class="stat-accent"></div>
+              <div class="stat-icon"><i data-lucide="check-circle-2"></i></div>
+              <div class="stat-lbl">Completed</div>
+              <div class="stat-val" id="d-done">0</div>
+              <div class="stat-info">Reports finalized</div>
+            </div>
+            <div class="stat-card" style="--accent:#6366f1;--icon-bg:rgba(99,102,241,.1)">
+              <div class="stat-accent"></div>
+              <div class="stat-icon"><i data-lucide="clock"></i></div>
+              <div class="stat-lbl">Pending Signatures</div>
+              <div class="stat-val" id="d-sigs">0</div>
+              <div class="stat-info">Awaiting authorities</div>
+            </div>
+            <div class="stat-card" style="--accent:var(--saffron);--icon-bg:rgba(224,123,0,.1)">
+              <div class="stat-accent"></div>
+              <div class="stat-icon"><i data-lucide="file-down"></i></div>
+              <div class="stat-lbl">PDFs Generated</div>
+              <div class="stat-val" id="d-pdfs">0</div>
+              <div class="stat-info">Final reports ready</div>
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns: 2.2fr 1fr; gap: 24px; align-items: start;">
+            <div style="display:flex; flex-direction:column; gap:20px;">
+              <div class="card">
+                <div class="card-hd">
+                  <div>
+                    <div class="card-title">Recent Projects</div>
+                    <div class="card-sub">Click to open and edit</div>
+                  </div><button class="btn btn-outline btn-xs" onclick="showView('projects',null)">See All</button>
+                </div>
+                <div class="card-bd" id="dash-recent"></div>
+              </div>
+              <div class="card">
+                <div class="card-hd">
+                  <div class="card-title">DSR Workflow Overview</div>
+                </div>
+                <div class="card-bd">
+                  <div class="timeline">
+                    <div class="tl-item">
+                      <div class="tl-line"></div>
+                      <div class="tl-dot done">Γ£ô</div>
+                      <div class="tl-content">
+                        <div class="tl-title">Project Initialized</div>
+                        <div class="tl-sub">Basic details, district, year, mineral type</div>
+                      </div>
+                    </div>
+                    <div class="tl-item">
+                      <div class="tl-line"></div>
+                      <div class="tl-dot active">2</div>
+                      <div class="tl-content">
+                        <div class="tl-title">Data Entry & Upload</div>
+                        <div class="tl-sub">Front matter, chapters, plates, graphs, annexures, tables</div>
+                      </div>
+                    </div>
+                    <div class="tl-item">
+                      <div class="tl-line"></div>
+                      <div class="tl-dot">3</div>
+                      <div class="tl-content">
+                        <div class="tl-title">Generate Final PDF</div>
+                        <div class="tl-sub">Professional government-format report</div>
+                      </div>
+                    </div>
+                    <div class="tl-item">
+                      <div class="tl-line"></div>
+                      <div class="tl-dot">4</div>
+                      <div class="tl-content">
+                        <div class="tl-title">Submit for Approval</div>
+                        <div class="tl-sub">Send to authority signing dashboard</div>
+                      </div>
+                    </div>
+                    <div class="tl-item">
+                      <div class="tl-dot">5</div>
+                      <div class="tl-content">
+                        <div class="tl-title">Sequential E-Signing</div>
+                        <div class="tl-sub">5-level authority hierarchy ┬╖ Final signed PDF</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:20px;" id="dash-right-sidebar">
+              <!-- District Legend and active district card will be dynamically populated here -->
+            </div>
+          </div>
+        </div>
+
+        <!-- ΓòÉΓòÉΓòÉ PROJECTS ΓòÉΓòÉΓòÉ -->
+        <div id="view-projects" class="view">
+          <div class="header-row">
+            <div>
+              <div class="page-title">My DSR Projects</div>
+              <div class="page-sub">All district survey reports across Punjab</div>
+            </div>
+            <button class="btn btn-saffron" onclick="newProjectModal()">+ New Project</button>
+          </div>
+          <div style="display:grid; grid-template-columns: 2.2fr 1fr; gap: 24px; align-items: start;">
+            <div id="projects-grid" class="g2"></div>
+            <div style="display:flex; flex-direction:column; gap:20px;" id="projects-right-sidebar">
+              <!-- District Legend will be dynamically populated here -->
+            </div>
+          </div>
+        </div>
+
+        <!-- ΓòÉΓòÉΓòÉ WORKFLOW ΓòÉΓòÉΓòÉ -->
+        <div id="view-workflow" class="view">
+          <div class="header-row">
+            <div>
+              <div class="page-title">Report Workflow</div>
+              <div class="page-sub">Serial-locked workflow ΓÇö each stage must be completed before unlocking the next
+              </div>
+            </div>
+          </div>
+          <div id="workflow-active-district-header" style="margin-bottom: 20px; display:none;"></div>
+          <div class="step-bar">
+            <div class="step done">
+              <div class="step-dot">Γ£ô</div>
+              <div class="step-lbl">Project Setup</div>
+            </div>
+            <div class="step active">
+              <div class="step-dot">2</div>
+              <div class="step-lbl">Front Matter</div>
+            </div>
+            <div class="step">
+              <div class="step-dot">3</div>
+              <div class="step-lbl">Chapters</div>
+            </div>
+            <div class="step">
+              <div class="step-dot">4</div>
+              <div class="step-lbl">Plates</div>
+            </div>
+            <div class="step">
+              <div class="step-dot">5</div>
+              <div class="step-lbl">Annexures</div>
+            </div>
+            <div class="step">
+              <div class="step-dot">6</div>
+              <div class="step-lbl">Tables</div>
+            </div>
+            <div class="step">
+              <div class="step-dot">7</div>
+              <div class="step-lbl">PDF</div>
+            </div>
+            <div class="step">
+              <div class="step-dot">8</div>
+              <div class="step-lbl">E-Sign</div>
+            </div>
+          </div>
+          <div class="g2">
+            <div class="card">
+              <div class="card-hd">
+                <div class="card-title">Section Completion Status</div>
+              </div>
+              <div class="card-bd" id="workflow-checklist"></div>
+            </div>
+            <div class="card">
+              <div class="card-hd">
+                <div class="card-title">E-Signature Hierarchy</div>
+              </div>
+              <div class="card-bd">
+                <div class="notif notif-warn" style="margin-bottom:14px; display:flex; align-items:center; gap:8px;">
+                  <i data-lucide="alert-triangle" style="width:16px; height:16px; flex-shrink:0;"></i>
+                  <span>Signatures must be completed in strict sequential order.</span>
+                </div>
+                <div class="timeline">
+                  <div class="tl-item">
+                    <div class="tl-line"></div>
+                    <div class="tl-dot done">1</div>
+                    <div class="tl-content">
+                      <div class="tl-title">Sub-Divisional Officer</div>
+                      <div class="tl-sub">First signatory ┬╖ Data verification</div>
+                    </div>
+                  </div>
+                  <div class="tl-item">
+                    <div class="tl-line"></div>
+                    <div class="tl-dot active">2</div>
+                    <div class="tl-content">
+                      <div class="tl-title">District Mining Officer</div>
+                      <div class="tl-sub">Technical review & approval</div>
+                    </div>
+                  </div>
+                  <div class="tl-item">
+                    <div class="tl-line"></div>
+                    <div class="tl-dot">3</div>
+                    <div class="tl-content">
+                      <div class="tl-title">Deputy Commissioner</div>
+                      <div class="tl-sub">Administrative sanction</div>
+                    </div>
+                  </div>
+                  <div class="tl-item">
+                    <div class="tl-line"></div>
+                    <div class="tl-dot">4</div>
+                    <div class="tl-content">
+                      <div class="tl-title">Director, Mining</div>
+                      <div class="tl-sub">State-level final approval</div>
+                    </div>
+                  </div>
+                  <div class="tl-item">
+                    <div class="tl-dot">5</div>
+                    <div class="tl-content">
+                      <div class="tl-title">Principal Secretary</div>
+                      <div class="tl-sub">Final submission clearance</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ΓòÉΓòÉΓòÉ FRONT MATTER ΓòÉΓòÉΓòÉ -->
+        <div id="view-front-matter" class="view">
+          <div class="header-row">
+            <div>
+              <div class="page-title">Front Matter</div>
+              <div class="page-sub">Cover page, preface, content page, certificate of compliance & acknowledgements
+              </div>
+            </div><span class="section-status ss-active"></span>
+          </div>
+          <div class="g2">
+            <div>
+              <div class="card" style="margin-bottom:16px">
+                <div class="card-hd">
+                  <div class="card-title">Cover Page</div>
+                  <div class="card-sub">Upload PDF or fill template</div>
+                </div>
+                <div class="card-bd">
+                  <div class="upload-zone" style="margin-bottom:12px" onclick="trigUp('fm-cover-up')">
+                    <input type="file" id="fm-cover-up" accept=".pdf" hidden onchange="handleFMUpload(event,'cover')">
+                    <span class="upload-icon">≡ƒôä</span>
+                    <div class="upload-title">Upload Cover Page PDF</div>
+                    <div class="upload-hint">PDF only ┬╖ Replaces template in final report</div>
+                  </div>
+                  <div id="fm-cover-file"></div>
+                  <div class="divider"></div>
+                  <div class="field-group">
+                    <div class="field"><label>Report Title</label><input id="fm-title"
+                        value="District Survey Report for Sand Mining"></div>
+                    <div class="field-row">
+                      <div class="field"><label>District</label><input id="fm-district" value="Jalandhar"></div>
+                      <div class="field"><label>State</label><input value="Punjab"></div>
+                    </div>
+                    <div class="field-row">
+                      <div class="field"><label>Year</label><input id="fm-year" value="2025-26"></div>
+                      <div class="field"><label>Version</label><input value="Final Draft"></div>
+                    </div>
+                    <div class="field"><label>Prepared By</label><input
+                        value="Sub-Divisional Committee, Jalandhar District"></div>
+                    <div class="field"><label>Assisted By</label><input
+                        value="RSP Green Development and Laboratories Pvt. Ltd."></div>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-hd">
+                  <div class="card-title">Certificate of Compliance</div>
+                </div>
+                <div class="card-bd">
+                  <div class="upload-zone" onclick="trigUp('fm-cert-up')">
+                    <input type="file" id="fm-cert-up" accept=".pdf" hidden onchange="handleFMUpload(event,'cert')">
+                    <span class="upload-icon">≡ƒÅà</span>
+                    <div class="upload-title">Upload Certificate PDF</div>
+                    <div class="upload-hint">EMGSM 2020 compliance certificate</div>
+                  </div>
+                  <div id="fm-cert-file"></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="card" style="margin-bottom:16px">
+                <div class="card-hd">
+                  <div class="card-title">Content Page</div>
+                  <div class="card-sub">Table of contents template</div>
+                </div>
+                <div class="card-bd">
+                  <div class="upload-zone" style="margin-bottom:12px" onclick="trigUp('fm-toc-up')">
+                    <input type="file" id="fm-toc-up" accept=".pdf" hidden onchange="handleFMUpload(event,'toc')">
+                    <span class="upload-icon">≡ƒôæ</span>
+                    <div class="upload-title">Upload Content Page PDF</div>
+                    <div class="upload-hint">Or use auto-generated template</div>
+                  </div>
+                  <div id="fm-toc-file"></div>
+                </div>
+              </div>
+              <div class="card" style="margin-bottom:16px">
+                <div class="card-hd">
+                  <div class="card-title">Preface</div>
+                </div>
+                <div class="card-bd">
+                  <div class="upload-zone" style="margin-bottom:12px" onclick="trigUp('fm-pref-up')">
+                    <input type="file" id="fm-pref-up" accept=".pdf" hidden onchange="handleFMUpload(event,'pref')">
+                    <span class="upload-icon">≡ƒô¥</span>
+                    <div class="upload-title">Upload Preface PDF</div>
+                    <div class="upload-hint">Or fill template below</div>
+                  </div>
+                  <div id="fm-pref-file"></div>
+                  <div class="field"><label>Preface Text</label><textarea id="fm-preface"
+                      rows="5">This District Survey Report (DSR) for Jalandhar District has been prepared in compliance with the Enforcement and Monitoring Guidelines for Sand Mining (EMGSM) 2020. The report provides a comprehensive assessment of sand mining activities, river morphology, mineral deposits, replenishment studies, and transportation routes within the district.</textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-hd">
+                  <div class="card-title">Acknowledgement</div>
+                </div>
+                <div class="card-bd">
+                  <div class="field"><label>Acknowledgement Text</label><textarea
+                      rows="4">The Sub-Divisional Committee of Jalandhar District acknowledges the support of the Punjab State Government, Department of Geology and Mining, and all field surveyors who contributed to this report.</textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ΓòÉΓòÉΓòÉ CHAPTERS ΓòÉΓòÉΓòÉ -->
+        <div id="view-chapters" class="view">
+          <div class="header-row">
+            <div>
+              <div class="page-title">Report Chapters</div>
+              <div class="page-sub">10 chapters as per EMGSM 2020 ┬╖ Edit headings and summaries ┬╖ Upload chapter PDFs
+              </div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center;"><button class="btn btn-outline btn-sm"
+                onclick="addChapter()">+ Add Chapter</button><span class="section-status ss-active"
+                style="display:inline-flex;align-items:center;gap:4px;"><i data-lucide="clock"
+                  style="width:12px;height:12px;"></i>In Progress</span></div>
+          </div>
+          <div id="chapter-list"></div>
+        </div>
+
+        <!-- ΓòÉΓòÉΓòÉ PLATES ΓòÉΓòÉΓòÉ -->
+        <div id="view-plates" class="view">
+          <div class="header-row">
+            <div>
+              <div class="page-title">Plate Section</div>
+              <div class="page-sub">Upload PDFs and images. Each entry becomes a plate in the final DSR report.</div>
+            </div>
+            <div style="display:flex;gap:8px">
+              <button class="btn btn-outline btn-sm" onclick="addPlate()">+ Add Plate</button>
+            </div>
+          </div>
+          <div id="plate-list"></div>
+        </div>
+
+        <!-- ΓòÉΓòÉΓòÉ GRAPHS ΓòÉΓòÉΓòÉ -->
+        <div id="view-graphs" class="view">
+          <div class="header-row">
+            <div>
+              <div class="page-title">Cross Section Graph Generator</div>
+              <div class="page-sub">Input elevation & distance data to generate sandbar cross-section graphs with
+                auto-calculated volumes</div>
+            </div>
+            <div style="display:flex;gap:8px">
+              <button class="btn btn-outline" onclick="generateAllGraphsPDF()">≡ƒôÑ Download All Graphs PDF</button>
+              <button class="btn btn-saffron" onclick="addGraph()">+ Add Section</button>
+            </div>
+          </div>
+          <div id="graph-list"></div>
+        </div>
+
+        <!-- ΓòÉΓòÉΓòÉ ANNEXURE I ΓòÉΓòÉΓòÉ -->
+        <div id="view-anx1" class="view">
+          <div class="header-row">
+            <div>
+              <div class="page-title">Annexure I ΓÇö Sand Sources</div>
+              <div class="page-sub">Details of Sand/M-Sand Sources ┬╖ EMGSM 2020</div>
+            </div>
+            <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+              <span id="anx1-uploaded-filename"
+                style="font-size:12px; color:var(--text-soft); font-weight:600; display:none; padding:4px 8px; background:var(--off); border-radius:var(--r-xs); border:1px solid var(--border);"></span>
+              <button id="anx1-preview-btn" class="btn btn-outline btn-sm"
+                style="display:none; align-items:center; gap:6px;" onclick="togglePDFPreviewAnx1()"><i data-lucide="eye"
+                  style="width:14px; height:14px;"></i> Preview PDF</button>
+              <button id="anx1-download-btn" class="btn btn-pdf-download btn-sm" style="display:none;"
+                onclick="downloadPdfAnx1()"><i data-lucide="download" style="width:14px; height:14px;"></i> Download
+                PDF</button>
+              <button id="anx1-delete-btn" class="btn btn-danger btn-sm"
+                style="display:none; align-items:center; gap:6px;" onclick="deletePdfAnx1()"><i data-lucide="trash-2"
+                  style="width:14px; height:14px;"></i> Delete PDF</button>
+              <label class="btn btn-pdf-upload btn-sm"
+                style="cursor:pointer; margin-bottom:0; display:inline-flex; align-items:center; gap:6px;">
+                <i data-lucide="upload" style="width:14px; height:14px;"></i>
+                <span>Upload PDF</span>
+                <input type="file" accept="application/pdf" id="anx1-pdf-input" hidden
+                  onchange="handlePDFUpload(event)">
+              </label>
+            </div>
+          </div>
+
+          <div class="notif notif-info" style="margin-bottom:16px">
+            Download the Excel template for each section below ΓåÆ Fill values locally ΓåÆ Upload at the bottom of the
+            section ΓåÆ Click 'Download Final Annexure 1 PDF' when ready.
+          </div>
+
+          <!-- PDF Preview Section (Hidden by default) -->
+          <div id="pdf-preview-section" class="card" style="display: none; border-color: #0ea5e9; margin-bottom: 24px;">
+            <div class="card-bd">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <h3 style="margin: 0; font-size: 18px; color: #0369a1;">Uploaded PDF Preview</h3>
+                <button class="btn btn-sm btn-danger" onclick="closePDFPreview()"
+                  style="display:inline-flex; align-items:center; gap:6px;">
+                  <i data-lucide="x" style="width:14px; height:14px;"></i>
+                  <span>Close Preview</span>
+                </button>
+              </div>
+              <iframe id="pdf-iframe"
+                style="width: 100%; height: 600px; border: 1px solid #e5e7eb; border-radius: 6px; background: #f9fafb;"></iframe>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-bd">
+
+              <!-- Section A -->
+              <div class="anx-section">
+                <div class="anx-section-header"
+                  style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+                  <div class="anx-section-title" style="font-weight:bold; font-size:14px;">a) Rivers:</div>
+                  <button class="btn btn-excel-template btn-xs" onclick="downloadSectionTemplate('A')"
+                    style="display:inline-flex; align-items:center; gap:6px;">
+                    <i data-lucide="file-spreadsheet" style="width:12px; height:12px;"></i>
+                    <span>Excel Template (Rivers)</span>
+                  </button>
+                </div>
+
+                <div class="tbl-wrap">
+                  <table class="anx-tbl" id="anx1-rivers">
+                    <thead>
+                      <tr>
+                        <th>River Name/M-Sand Plant</th>
+                        <th>Total Stretch of River (in KM)</th>
+                        <th>Type of River (Perennial or Non Perennial)</th>
+                        <th style="width:50px;">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td contenteditable="true">Sutlej</td>
+                        <td contenteditable="true">90.66</td>
+                        <td><select>
+                            <option>Perennial</option>
+                            <option>Non-Perennial</option>
+                          </select></td>
+                        <td>
+                          <button class="btn btn-xs btn-danger" onclick="delRow(this)"
+                            style="display:inline-flex; align-items:center; justify-content:center; padding:4px;">
+                            <i data-lucide="trash-2" style="width:12px; height:12px;"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td contenteditable="true">Beas</td>
+                        <td contenteditable="true">65.20</td>
+                        <td><select>
+                            <option>Perennial</option>
+                            <option>Non-Perennial</option>
+                          </select></td>
+                        <td>
+                          <button class="btn btn-xs btn-danger" onclick="delRow(this)"
+                            style="display:inline-flex; align-items:center; justify-content:center; padding:4px;">
+                            <i data-lucide="trash-2" style="width:12px; height:12px;"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="section-footer"
+                  style="margin-top:12px; display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+                  <button class="btn btn-xs btn-outline"
+                    onclick="addRowAnx1('anx1-rivers',['','','<select><option>Perennial</option><option>Non-Perennial</option></select>','<button class=\'btn btn-xs btn-danger\' onclick=\'delRow(this)\' style=\'display:inline-flex;align-items:center;justify-content:center;padding:4px;\'><i data-lucide=\'trash-2\' style=\'width:12px;height:12px;\'></i></button>'])"
+                    style="display:inline-flex; align-items:center; gap:6px;">
+                    <i data-lucide="plus" style="width:12px; height:12px;"></i>
+                    <span>Add River</span>
+                  </button>
+                  <label class="btn btn-excel-upload btn-xs"
+                    style="cursor:pointer; display:inline-flex; align-items:center; gap:6px; margin-bottom:0;">
+                    <i data-lucide="upload" style="width:12px; height:12px;"></i>
+                    <span>Upload Excel (Rivers)</span>
+                    <input type="file" accept=".xlsx,.xls,.csv" hidden onchange="handleSectionUpload(event, 'A')">
+                  </label>
+                </div>
+              </div>
+
+              <!-- Section B -->
+              <div class="anx-section" style="margin-top:32px;">
+                <div class="anx-section-header"
+                  style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+                  <div class="anx-section-title" style="font-weight:bold; font-size:14px;">b) De-Siltation Location
+                    (Lakes/Ponds/Dams etc.):</div>
+                  <button class="btn btn-excel-template btn-xs" onclick="downloadSectionTemplate('B')"
+                    style="display:inline-flex; align-items:center; gap:6px;">
+                    <i data-lucide="file-spreadsheet" style="width:12px; height:12px;"></i>
+                    <span>Excel Template (De-Siltation)</span>
+                  </button>
+                </div>
+
+                <div class="tbl-wrap">
+                  <table class="anx-tbl" id="anx1-desilt">
+                    <thead>
+                      <tr>
+                        <th>Name of Reservoir/Dams</th>
+                        <th>Maintain/Controlled by State Govt./PSU etc.</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                        <th>District</th>
+                        <th>Tehsil</th>
+                        <th>Village</th>
+                        <th>Size (Ha)</th>
+                        <th style="width:50px;">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td contenteditable="true">Sutlej</td>
+                        <td contenteditable="true">State Govt.</td>
+                        <td contenteditable="true" class="coord-input">31┬░00'56"N</td>
+                        <td contenteditable="true" class="coord-input">75┬░54'59"E</td>
+                        <td contenteditable="true">Jalandhar</td>
+                        <td contenteditable="true">Phillaur</td>
+                        <td contenteditable="true">Powari</td>
+                        <td contenteditable="true">10.93</td>
+                        <td>
+                          <button class="btn btn-xs btn-danger" onclick="delRow(this)"
+                            style="display:inline-flex; align-items:center; justify-content:center; padding:4px;">
+                            <i data-lucide="trash-2" style="width:12px; height:12px;"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td contenteditable="true">Sutlej</td>
+                        <td contenteditable="true">State Govt.</td>
+                        <td contenteditable="true" class="coord-input">31┬░00'35"N</td>
+                        <td contenteditable="true" class="coord-input">75┬░52'49"E</td>
+                        <td contenteditable="true">Jalandhar</td>
+                        <td contenteditable="true">Phillaur</td>
+                        <td contenteditable="true">Kadiana</td>
+                        <td contenteditable="true">12.42</td>
+                        <td>
+                          <button class="btn btn-xs btn-danger" onclick="delRow(this)"
+                            style="display:inline-flex; align-items:center; justify-content:center; padding:4px;">
+                            <i data-lucide="trash-2" style="width:12px; height:12px;"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="section-footer"
+                  style="margin-top:12px; display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+                  <button class="btn btn-xs btn-outline"
+                    onclick="addRowAnx1('anx1-desilt',['','','','','','','','','<button class=\'btn btn-xs btn-danger\' onclick=\'delRow(this)\' style=\'display:inline-flex;align-items:center;justify-content:center;padding:4px;\'><i data-lucide=\'trash-2\' style=\'width:12px;height:12px;\'></i></button>'])"
+                    style="display:inline-flex; align-items:center; gap:6px;">
+                    <i data-lucide="plus" style="width:12px; height:12px;"></i>
+                    <span>Add Location</span>
+                  </button>
+                  <label class="btn btn-excel-upload btn-xs"
+                    style="cursor:pointer; display:inline-flex; align-items:center; gap:6px; margin-bottom:0;">
+                    <i data-lucide="upload" style="width:12px; height:12px;"></i>
+                    <span>Upload Excel (De-Siltation)</span>
+                    <input type="file" accept=".xlsx,.xls,.csv" hidden onchange="handleSectionUpload(event, 'B')">
+                  </label>
+                </div>
+              </div>
+
+              <!-- Section C -->
+              <div class="anx-section" style="margin-top:32px;">
+                <div class="anx-section-header"
+                  style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+                  <div class="anx-section-title" style="font-weight:bold; font-size:14px;">c) Patta lands/Khatedari
+                    land:</div>
+                  <button class="btn btn-excel-template btn-xs" onclick="downloadSectionTemplate('C')"
+                    style="display:inline-flex; align-items:center; gap:6px;">
+                    <i data-lucide="file-spreadsheet" style="width:12px; height:12px;"></i>
+                    <span>Excel Template (Patta Lands)</span>
+                  </button>
+                </div>
+
+                <div class="tbl-wrap">
+                  <table class="anx-tbl" id="anx1-patta">
+                    <thead>
+                      <tr>
+                        <th>Owner</th>
+                        <th>SL. No</th>
+                        <th>Area (Ha)</th>
+                        <th>District</th>
+                        <th>Tehsil</th>
+                        <th>Village</th>
+                        <th>Agricultural Land (Yes/No)</th>
+                        <th style="width:50px;">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td contenteditable="true">Jaswinder Singh</td>
+                        <td contenteditable="true">123/1</td>
+                        <td contenteditable="true">2.50</td>
+                        <td contenteditable="true">Jalandhar</td>
+                        <td contenteditable="true">Phillaur</td>
+                        <td contenteditable="true">Kadiana</td>
+                        <td><select>
+                            <option>Yes</option>
+                            <option>No</option>
+                          </select></td>
+                        <td>
+                          <button class="btn btn-xs btn-danger" onclick="delRow(this)"
+                            style="display:inline-flex; align-items:center; justify-content:center; padding:4px;">
+                            <i data-lucide="trash-2" style="width:12px; height:12px;"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="section-footer"
+                  style="margin-top:12px; display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+                  <button class="btn btn-xs btn-outline"
+                    onclick="addRowAnx1('anx1-patta',['','','','','','','<select><option>Yes</option><option>No</option></select>','<button class=\'btn btn-xs btn-danger\' onclick=\'delRow(this)\' style=\'display:inline-flex;align-items:center;justify-content:center;padding:4px;\'><i data-lucide=\'trash-2\' style=\'width:12px;height:12px;\'></i></button>'])"
+                    style="display:inline-flex; align-items:center; gap:6px;">
+                    <i data-lucide="plus" style="width:12px; height:12px;"></i>
+                    <span>Add Patta Land</span>
+                  </button>
+                  <label class="btn btn-excel-upload btn-xs"
+                    style="cursor:pointer; display:inline-flex; align-items:center; gap:6px; margin-bottom:0;">
+                    <i data-lucide="upload" style="width:12px; height:12px;"></i>
+                    <span>Upload Excel (Patta Lands)</span>
+                    <input type="file" accept=".xlsx,.xls,.csv" hidden onchange="handleSectionUpload(event, 'C')">
+                  </label>
+                </div>
+              </div>
+
+              <!-- Section D -->
+              <div class="anx-section" style="margin-top:32px;">
+                <div class="anx-section-header"
+                  style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+                  <div class="anx-section-title" style="font-weight:bold; font-size:14px;">d) M-Sand Plants:</div>
+                  <button class="btn btn-excel-template btn-xs" onclick="downloadSectionTemplate('D')"
+                    style="display:inline-flex; align-items:center; gap:6px;">
+                    <i data-lucide="file-spreadsheet" style="width:12px; height:12px;"></i>
+                    <span>Excel Template (M-Sand)</span>
+                  </button>
+                </div>
+
+                <div class="tbl-wrap">
+                  <table class="anx-tbl" id="anx1-msand">
+                    <thead>
+                      <tr>
+                        <th>Plant Name</th>
+                        <th>Owner</th>
+                        <th>District</th>
+                        <th>Tehsil</th>
+                        <th>Village</th>
+                        <th>Geo-location</th>
+                        <th>Quantity Tonnes/Annum</th>
+                        <th style="width:50px;">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td contenteditable="true">Not Available</td>
+                        <td contenteditable="true">Not Available</td>
+                        <td contenteditable="true">Jalandhar</td>
+                        <td contenteditable="true">Phillaur</td>
+                        <td contenteditable="true">Not Available</td>
+                        <td contenteditable="true" class="coord-input">Not Available</td>
+                        <td contenteditable="true">Not Available</td>
+                        <td>
+                          <button class="btn btn-xs btn-danger" onclick="delRow(this)"
+                            style="display:inline-flex; align-items:center; justify-content:center; padding:4px;">
+                            <i data-lucide="trash-2" style="width:12px; height:12px;"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="section-footer"
+                  style="margin-top:12px; display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+                  <button class="btn btn-xs btn-outline"
+                    onclick="addRowAnx1('anx1-msand',['','','','','','','','<button class=\'btn btn-xs btn-danger\' onclick=\'delRow(this)\' style=\'display:inline-flex;align-items:center;justify-content:center;padding:4px;\'><i data-lucide=\'trash-2\' style=\'width:12px;height:12px;\'></i></button>'])"
+                    style="display:inline-flex; align-items:center; gap:6px;">
+                    <i data-lucide="plus" style="width:12px; height:12px;"></i>
+                    <span>Add M-Sand Plant</span>
+                  </button>
+                  <label class="btn btn-excel-upload btn-xs"
+                    style="cursor:pointer; display:inline-flex; align-items:center; gap:6px; margin-bottom:0;">
+                    <i data-lucide="upload" style="width:12px; height:12px;"></i>
+                    <span>Upload Excel (M-Sand)</span>
+                    <input type="file" accept=".xlsx,.xls,.csv" hidden onchange="handleSectionUpload(event, 'D')">
+                  </label>
+                </div>
+              </div>
+
+              <!-- Final Action Area -->
+              <div class="final-actions" style="margin-top:32px; display:flex; justify-content:center;">
+                <button class="btn btn-pdf-upload btn-lg" onclick="exportAnx1PDF(this)"
+                  style="display:inline-flex; align-items:center; gap:8px;">
+                  <i data-lucide="file-text" style="width:18px; height:18px;"></i>
+                  <span>Download Final Annexure 1 PDF</span>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- ΓòÉΓòÉΓòÉ ANNEXURE II ΓòÉΓòÉΓòÉ -->
+        <div id="view-anx2" class="view">
+          <div class="header-row">
+            <div>
+              <div class="page-title">Annexure II ΓÇö Mining Leases</div>
+              <div class="page-sub">Details of Mining Leases, Patta Lands, De-siltation & M-Sand Plants ┬╖ EMGSM 2020
+              </div>
+            </div>
+            <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+              <span id="anx2-uploaded-filename"
+                style="font-size:12px; color:var(--text-soft); font-weight:600; display:none; padding:4px 8px; background:var(--off); border-radius:var(--r-xs); border:1px solid var(--border);"></span>
+              <button id="anx2-preview-btn" class="btn btn-outline btn-sm"
+                style="display:none; align-items:center; gap:6px;" onclick="togglePDFPreviewAnx2()"><i data-lucide="eye"
+                  style="width:14px; height:14px;"></i> Preview PDF</button>
+              <button id="anx2-download-btn" class="btn btn-pdf-download btn-sm" style="display:none;"
+                onclick="downloadPdfAnx2()"><i data-lucide="download" style="width:14px; height:14px;"></i> Download
+                PDF</button>
+              <button id="anx2-delete-btn" class="btn btn-danger btn-sm"
+                style="display:none; align-items:center; gap:6px;" onclick="deletePdfAnx2()"><i data-lucide="trash-2"
+                  style="width:14px; height:14px;"></i> Delete PDF</button>
+              <label class="btn btn-pdf-upload btn-sm"
+                style="cursor:pointer; margin-bottom:0; display:inline-flex; align-items:center; gap:6px;">
+                <i data-lucide="upload" style="width:14px; height:14px;"></i>
+                <span>Upload PDF</span>
+                <input type="file" accept="application/pdf" id="anx2-pdf-input" hidden
+                  onchange="handlePDFUploadAnx2(event)">
+              </label>
+            </div>
+          </div>
+
+          <div class="notif notif-info" style="margin-bottom:16px">
+            Download the Excel template for each section below ΓåÆ Fill values locally ΓåÆ Upload at the bottom of the
+            section ΓåÆ Click 'Download Final Annexure 2 PDF' when ready.
+          </div>
+
+          <!-- PDF Preview Section (Hidden by default) -->
+          <div id="pdf-preview-section-anx2" class="card"
+            style="display: none; border-color: #0ea5e9; margin-bottom: 24px;">
+            <div class="card-bd">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <h3 style="margin: 0; font-size: 18px; color: #0369a1;">Uploaded PDF Preview</h3>
+                <button class="btn btn-sm btn-danger" onclick="closePDFPreviewAnx2()"
+                  style="display:inline-flex; align-items:center; gap:6px;">
+                  <i data-lucide="x" style="width:14px; height:14px;"></i>
+                  <span>Close Preview</span>
+                </button>
+              </div>
+              <iframe id="pdf-iframe-anx2"
+                style="width: 100%; height: 600px; border: 1px solid #e5e7eb; border-radius: 6px; background: #f9fafb;"></iframe>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-bd">
+
+              <!-- Section A: Mining Leases -->
+              <div id="section-a-wrapper">
+                <div class="anx-section section-a-block">
+                  <div class="anx-section-header"
+                    style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+                    <div class="anx-section-title" style="font-weight:bold; font-size:14px;">a) Potential Mining Leases
+                      (Existing & Proposed) Rivers:</div>
+                    <button class="btn btn-excel-template btn-xs" onclick="downloadSectionTemplateAnx2('A')"
+                      style="display:inline-flex; align-items:center; gap:6px;">
+                      <i data-lucide="file-spreadsheet" style="width:12px; height:12px;"></i>
+                      <span>Excel Template (Leases)</span>
+                    </button>
+                  </div>
+
+                  <div class="tbl-wrap">
+                    <table class="anx-tbl" id="anx2-leases" style="min-width:1400px">
+                      <thead>
+                        <tr>
+                          <th style="width: 50px;">Sl. No.</th>
+                          <th>River Details</th>
+                          <th>Sand Bar Code</th>
+                          <th>Lease Details</th>
+                          <th>Area (Ha)</th>
+                          <th>Latitude</th>
+                          <th>Longitude</th>
+                          <th>Distance from PA/WC (KM)</th>
+                          <th>Within 500m? (Cluster Area)</th>
+                          <th>Bulk Density (gm/cc)</th>
+                          <th>Depth of Deposit (m)</th>
+                          <th>Total Excavation (MT/YR)</th>
+                          <th>Total Excavation (Net 60%)</th>
+                          <th>Mineral</th>
+                          <th>Existing/Proposed</th>
+                          <th>Remarks</th>
+                          <th style="width: 50px;">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td contenteditable="true">1</td>
+                          <td contenteditable="true">Sutlej</td>
+                          <td contenteditable="true" class="coord-input">PO_JL_PL_ST_1B</td>
+                          <td contenteditable="true">Jalandhar Sutlej-1 Vill- Kadiana, Block- Phillaur</td>
+                          <td contenteditable="true" oninput="calcLeaseRow(this)">4.8</td>
+                          <td contenteditable="true" class="coord-input" style="white-space: pre-line;">31┬░ 0' 48.886" N
+                            31┬░ 0' 48.121" N
+                            31┬░ 0' 47.214" N
+                            31┬░ 0' 45.964" N
+                            31┬░ 0' 45.741" N
+                            31┬░ 0' 46.434" N
+                            31┬░ 0' 47.331" N
+                            31┬░ 0' 48.358" N
+                            31┬░ 0' 48.535" N
+                            31┬░ 0' 48.236" N
+                            31┬░ 0' 48.619" N
+                            31┬░ 0' 49.516" N
+                            31┬░ 0' 50.244" N
+                            31┬░ 0' 50.792" N
+                            31┬░ 0' 51.774" N
+                            31┬░ 0' 51.969" N
+                            31┬░ 0' 51.527" N
+                            31┬░ 0' 51.049" N
+                            31┬░ 0' 49.961" N</td>
+                          <td contenteditable="true" class="coord-input" style="white-space: pre-line;">75┬░ 53' 39.686"
+                            E
+                            75┬░ 53' 37.489" E
+                            75┬░ 53' 34.086" E
+                            75┬░ 53' 31.294" E
+                            75┬░ 53' 29.392" E
+                            75┬░ 53' 27.465" E
+                            75┬░ 53' 24.967" E
+                            75┬░ 53' 23.655" E
+                            75┬░ 53' 25.161" E
+                            75┬░ 53' 27.351" E
+                            75┬░ 53' 28.831" E
+                            75┬░ 53' 26.493" E
+                            75┬░ 53' 29.310" E
+                            75┬░ 53' 31.822" E
+                            75┬░ 53' 35.033" E
+                            75┬░ 53' 38.541" E
+                            75┬░ 53' 41.834" E
+                            75┬░ 53' 42.609" E
+                            75┬░ 53' 40.684" E</td>
+                          <td contenteditable="true">NA</td>
+                          <td contenteditable="true">Yes, Area: 25.27 Ha.</td>
+                          <td contenteditable="true" oninput="calcLeaseRow(this)">1.54</td>
+                          <td contenteditable="true" oninput="calcLeaseRow(this)">1.74</td>
+                          <td class="calc-total">128620.80</td>
+                          <td class="calc-net">77172.48</td>
+                          <td contenteditable="true">Sand</td>
+                          <td>
+                            <select>
+                              <option selected>Existing</option>
+                              <option>Proposed</option>
+                            </select>
+                          </td>
+                          <td contenteditable="true">EC Granted Area 4.8 Ha (whole)</td>
+                          <td>
+                            <button class="btn btn-xs btn-danger" onclick="delRowAnx2(this)"
+                              style="display:inline-flex; align-items:center; justify-content:center; padding:4px;">
+                              <i data-lucide="trash-2" style="width:12px; height:12px;"></i>
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="section-footer"
+                    style="margin-top:12px; display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+                    <button class="btn btn-xs btn-outline" onclick="addNewLeaseRow(this)"
+                      style="display:inline-flex; align-items:center; gap:6px;">
+                      <i data-lucide="plus" style="width:12px; height:12px;"></i>
+                      <span>Add Lease</span>
+                    </button>
+                    <label class="btn btn-excel-upload btn-xs"
+                      style="cursor:pointer; display:inline-flex; align-items:center; gap:6px; margin-bottom:0;">
+                      <i data-lucide="upload" style="width:12px; height:12px;"></i>
+                      <span>Upload Excel (Leases)</span>
+                      <input type="file" accept=".xlsx,.xls,.csv" hidden onchange="handleSectionUploadAnx2(event, 'A')">
+                    </label>
+                    <button class="btn btn-xs btn-danger rm-sec-a-btn"
+                      onclick="this.closest('.section-a-block').remove()"
+                      style="display:none; align-items:center; gap:6px;">
+                      <i data-lucide="trash-2" style="width:12px; height:12px;"></i>
+                      <span>Remove This Table</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-bottom:30px; margin-top:12px;">
+                <button class="btn btn-sm btn-pdf-upload" onclick="addSectionABlock()"
+                  style="display:inline-flex; align-items:center; gap:6px;">
+                  <i data-lucide="plus-circle" style="width:14px; height:14px;"></i>
+                  <span>Add Another Section A Page/Table</span>
+                </button>
+              </div>
+
+              <!-- Section B: Patta Lands -->
+              <div class="anx-section" style="margin-top:32px;">
+                <div class="anx-section-header"
+                  style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+                  <div class="anx-section-title" style="font-weight:bold; font-size:14px;">b) Patta lands/Khatedari land
+                    (Existing & Proposed):</div>
+                  <button class="btn btn-excel-template btn-xs" onclick="downloadSectionTemplateAnx2('B')"
+                    style="display:inline-flex; align-items:center; gap:6px;">
+                    <i data-lucide="file-spreadsheet" style="width:12px; height:12px;"></i>
+                    <span>Excel Template (Patta Lands)</span>
+                  </button>
+                </div>
+
+                <div class="tbl-wrap">
+                  <table class="anx-tbl" id="anx2-patta" style="min-width:1200px">
+                    <thead>
+                      <tr>
+                        <th style="width: 40px;">Sl.no</th>
+                        <th>Owner</th>
+                        <th>Sy.No (Khasra No)</th>
+                        <th>Area (Ha)</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                        <th>District</th>
+                        <th>Tehsil</th>
+                        <th>Village</th>
+                        <th>Total Reserve (MT)</th>
+                        <th>Total Mineral (60% MT)</th>
+                        <th>Existing/Proposed</th>
+                        <th>Remarks</th>
+                        <th style="width: 50px;">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td contenteditable="true">1</td>
+                        <td contenteditable="true" style="font-weight: bold;">Raj Kumar, S/O Divan Chand</td>
+                        <td contenteditable="true" style="white-space: pre-line;">8//21, 8//22, 8//23
+                          8//24, 15//1, 15//2</td>
+                        <td contenteditable="true" oninput="calcPattaRow(this)">2.77</td>
+                        <td contenteditable="true" class="coord-input" style="white-space: pre-line;">30┬░59'37.61"N
+                          30┬░59'37.53"N
+                          30┬░59'35.72"N
+                          30┬░59'35.71"N
+                          30┬░59'35.61"N
+                          30┬░59'35.57"N
+                          30┬░59'33.63"N
+                          30┬░59'33.62"N</td>
+                        <td contenteditable="true" class="coord-input" style="white-space: pre-line;">75┬░27'9.08"E
+                          75┬░27'21.44"E
+                          75┬░27'21.44"E
+                          75┬░27'19.03"E
+                          75┬░27'19.03"E
+                          75┬░27'14.06"E
+                          75┬░27'14.05"E
+                          75┬░27'9.10"E</td>
+                        <td contenteditable="true">Jalandhar</td>
+                        <td contenteditable="true">Shahkot</td>
+                        <td contenteditable="true">Bangiwal</td>
+                        <td class="p-reserve" contenteditable="true" oninput="updatePattaTotals()">126312</td>
+                        <td class="p-min" contenteditable="true" oninput="updatePattaTotals()">60630</td>
+                        <td>
+                          <select>
+                            <option selected>Existing</option>
+                            <option>Proposed</option>
+                          </select>
+                        </td>
+                        <td contenteditable="true">EC Granted area 2.77 ha (whole)</td>
+                        <td>
+                          <button class="btn btn-xs btn-danger" onclick="delRowAnx2(this)"
+                            style="display:inline-flex; align-items:center; justify-content:center; padding:4px;">
+                            <i data-lucide="trash-2" style="width:12px; height:12px;"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr class="total-row" style="font-weight: bold; background-color: #e5e7eb; text-align: center;">
+                        <td colspan="3">Total</td>
+                        <td id="patta-sum-area">2.77</td>
+                        <td colspan="5"></td>
+                        <td id="patta-sum-reserve">126312</td>
+                        <td id="patta-sum-mineral">60630.00</td>
+                        <td colspan="2"></td>
+                        <td></td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+
+                <div class="section-footer"
+                  style="margin-top:12px; display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+                  <button class="btn btn-xs btn-outline"
+                    onclick="addRowAnx2('anx2-patta',['','','','0','','','Jalandhar','','','0','0','<select><option>Existing</option><option>Proposed</option></select>','','<button class=\'btn btn-xs btn-danger\' onclick=\'delRowAnx2(this)\' style=\'display:inline-flex;align-items:center;justify-content:center;padding:4px;\'><i data-lucide=\'trash-2\' style=\'width:12px;height:12px;\'></i></button>']); updatePattaTotals();"
+                    style="display:inline-flex; align-items:center; gap:6px;">
+                    <i data-lucide="plus" style="width:12px; height:12px;"></i>
+                    <span>Add Patta Land</span>
+                  </button>
+                  <label class="btn btn-excel-upload btn-xs"
+                    style="cursor:pointer; display:inline-flex; align-items:center; gap:6px; margin-bottom:0;">
+                    <i data-lucide="upload" style="width:12px; height:12px;"></i>
+                    <span>Upload Excel (Patta Lands)</span>
+                    <input type="file" accept=".xlsx,.xls,.csv" hidden onchange="handleSectionUploadAnx2(event, 'B')">
+                  </label>
+                </div>
+              </div>
+
+              <!-- Section C: De-Siltation Location -->
+              <div class="anx-section" style="margin-top:32px;">
+                <div class="anx-section-header"
+                  style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+                  <div class="anx-section-title" style="font-weight:bold; font-size:14px;">c) De-Siltation Location
+                    (Lakes/Ponds/Dams etc.) (Existing & Proposed):</div>
+                  <button class="btn btn-excel-template btn-xs" onclick="downloadSectionTemplateAnx2('C')"
+                    style="display:inline-flex; align-items:center; gap:6px;">
+                    <i data-lucide="file-spreadsheet" style="width:12px; height:12px;"></i>
+                    <span>Excel Template (De-Siltation)</span>
+                  </button>
+                </div>
+
+                <div class="tbl-wrap">
+                  <table class="anx-tbl" id="anx2-desilt" style="min-width:1000px">
+                    <thead>
+                      <tr>
+                        <th>Name of Reservoir/Dams</th>
+                        <th>Maintain/Controlled by State Govt./PSU etc.</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                        <th>District</th>
+                        <th>Tehsil</th>
+                        <th>Village</th>
+                        <th>Size (Ha)</th>
+                        <th>Quantity MT/Year</th>
+                        <th>Existing/Proposed</th>
+                        <th style="width: 50px;">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td contenteditable="true" style="font-weight: bold;">Sutlej</td>
+                        <td contenteditable="true">State Govt.</td>
+                        <td contenteditable="true" class="coord-input">31┬░00'56"N</td>
+                        <td contenteditable="true" class="coord-input">75┬░54'59"E</td>
+                        <td contenteditable="true">Jalandhar</td>
+                        <td contenteditable="true">Phillaur</td>
+                        <td contenteditable="true">Powari</td>
+                        <td contenteditable="true" oninput="updateDesiltTotals()">10.93</td>
+                        <td contenteditable="true">-</td>
+                        <td><select>
+                            <option selected>Existing</option>
+                            <option>Proposed</option>
+                          </select></td>
+                        <td>
+                          <button class="btn btn-xs btn-danger" onclick="delRowAnx2(this)"
+                            style="display:inline-flex; align-items:center; justify-content:center; padding:4px;">
+                            <i data-lucide="trash-2" style="width:12px; height:12px;"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr class="total-row" style="font-weight: bold; background-color: #e5e7eb; text-align: center;">
+                        <td colspan="7">Total</td>
+                        <td id="desilt-sum-size">10.93</td>
+                        <td colspan="2"></td>
+                        <td></td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+
+                <div class="section-footer"
+                  style="margin-top:12px; display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+                  <button class="btn btn-xs btn-outline"
+                    onclick="addRowAnx2('anx2-desilt',['','','','','Jalandhar','','','0.00','-','<select><option>Existing</option><option>Proposed</option></select>','<button class=\'btn btn-xs btn-danger\' onclick=\'delRowAnx2(this)\' style=\'display:inline-flex;align-items:center;justify-content:center;padding:4px;\'><i data-lucide=\'trash-2\' style=\'width:12px;height:12px;\'></i></button>']); updateDesiltTotals();"
+                    style="display:inline-flex; align-items:center; gap:6px;">
+                    <i data-lucide="plus" style="width:12px; height:12px;"></i>
+                    <span>Add Location</span>
+                  </button>
+                  <label class="btn btn-excel-upload btn-xs"
+                    style="cursor:pointer; display:inline-flex; align-items:center; gap:6px; margin-bottom:0;">
+                    <i data-lucide="upload" style="width:12px; height:12px;"></i>
+                    <span>Upload Excel (De-Siltation)</span>
+                    <input type="file" accept=".xlsx,.xls,.csv" hidden onchange="handleSectionUploadAnx2(event, 'C')">
+                  </label>
+                </div>
+              </div>
+
+              <!-- Section D: M-Sand Plants -->
+              <div class="anx-section" style="margin-top:32px;">
+                <div class="anx-section-header"
+                  style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+                  <div class="anx-section-title" style="font-weight:bold; font-size:14px;">d) M-Sand Plants (Existing &
+                    Proposed):</div>
+                  <button class="btn btn-excel-template btn-xs" onclick="downloadSectionTemplateAnx2('D')"
+                    style="display:inline-flex; align-items:center; gap:6px;">
+                    <i data-lucide="file-spreadsheet" style="width:12px; height:12px;"></i>
+                    <span>Excel Template (M-Sand)</span>
+                  </button>
+                </div>
+
+                <div class="tbl-wrap">
+                  <table class="anx-tbl" id="anx2-msand" style="min-width:1000px">
+                    <thead>
+                      <tr>
+                        <th>Plant Name</th>
+                        <th>Owner</th>
+                        <th>District</th>
+                        <th>Tehsil</th>
+                        <th>Village</th>
+                        <th>Geo-location</th>
+                        <th>Quantity Tonnes/Annum</th>
+                        <th>Existing/Proposed</th>
+                        <th style="width: 50px;">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td contenteditable="true" style="font-weight: bold;">Not Available</td>
+                        <td contenteditable="true">Not Available</td>
+                        <td contenteditable="true">Jalandhar</td>
+                        <td contenteditable="true">Phillaur</td>
+                        <td contenteditable="true">Not Available</td>
+                        <td contenteditable="true" class="coord-input">Not Available</td>
+                        <td contenteditable="true">Not Available</td>
+                        <td><select>
+                            <option selected>Existing</option>
+                            <option>Proposed</option>
+                          </select></td>
+                        <td>
+                          <button class="btn btn-xs btn-danger" onclick="delRowAnx2(this)"
+                            style="display:inline-flex; align-items:center; justify-content:center; padding:4px;">
+                            <i data-lucide="trash-2" style="width:12px; height:12px;"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="section-footer"
+                  style="margin-top:12px; display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+                  <button class="btn btn-xs btn-outline"
+                    onclick="addRowAnx2('anx2-msand',['','','Jalandhar','','','','','<select><option>Existing</option><option>Proposed</option></select>','<button class=\'btn btn-xs btn-danger\' onclick=\'delRowAnx2(this)\' style=\'display:inline-flex;align-items:center;justify-content:center;padding:4px;\'><i data-lucide=\'trash-2\' style=\'width:12px;height:12px;\'></i></button>'])"
+                    style="display:inline-flex; align-items:center; gap:6px;">
+                    <i data-lucide="plus" style="width:12px; height:12px;"></i>
+                    <span>Add M-Sand Plant</span>
+                  </button>
+                  <label class="btn btn-excel-upload btn-xs"
+                    style="cursor:pointer; display:inline-flex; align-items:center; gap:6px; margin-bottom:0;">
+                    <i data-lucide="upload" style="width:12px; height:12px;"></i>
+                    <span>Upload Excel (M-Sand)</span>
+                    <input type="file" accept=".xlsx,.xls,.csv" hidden onchange="handleSectionUploadAnx2(event, 'D')">
+                  </label>
+                </div>
+              </div>
+
+              <!-- Final Action Area -->
+              <div class="final-actions" style="margin-top:32px; display:flex; justify-content:center;">
+                <button class="btn btn-pdf-upload btn-lg" onclick="exportAnx2PDF(this)"
+                  style="display:inline-flex; align-items:center; gap:8px;">
+                  <i data-lucide="file-text" style="width:18px; height:18px;"></i>
+                  <span>Download Final Annexure 2 PDF</span>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- ΓòÉΓòÉΓòÉ ANNEXURE III ΓòÉΓòÉΓòÉ -->
+        <div id="view-anx3" class="view">
+          <div class="header-row">
+            <div>
+              <div class="page-title">Annexure III ΓÇö Cluster Details</div>
+              <div class="page-sub">Cluster &amp; Contiguous Cluster Details ┬╖ EMGSM 2020</div>
+            </div>
+            <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+              <span id="anx3-uploaded-filename"
+                style="font-size:12px; color:var(--text-soft); font-weight:600; display:none; padding:4px 8px; background:var(--off); border-radius:var(--r-xs); border:1px solid var(--border);"></span>
+              <button id="anx3-preview-btn" class="btn btn-outline btn-sm"
+                style="display:none; align-items:center; gap:6px;" onclick="togglePDFPreviewAnx3()"><i data-lucide="eye"
+                  style="width:14px; height:14px;"></i> Preview PDF</button>
+              <button id="anx3-download-btn" class="btn btn-pdf-download btn-sm" style="display:none;"
+                onclick="downloadPdf()"><i data-lucide="download" style="width:14px; height:14px;"></i> Download
+                PDF</button>
+              <button id="anx3-delete-btn" class="btn btn-danger btn-sm"
+                style="display:none; align-items:center; gap:6px;" onclick="deletePdfAnx3()"><i data-lucide="trash-2"
+                  style="width:14px; height:14px;"></i> Delete PDF</button>
+              <label class="btn btn-pdf-upload btn-sm"
+                style="cursor:pointer; margin-bottom:0; display:inline-flex; align-items:center; gap:6px;">
+                <i data-lucide="upload" style="width:14px; height:14px;"></i>
+                <span>Upload PDF</span>
+                <input type="file" accept="application/pdf" id="anx3-pdf-input" hidden
+                  onchange="handlePdfUpload(event)">
+              </label>
+            </div>
+          </div>
+
+          <!-- PDF Preview Section (Hidden by default) -->
+          <div id="pdf-preview-section-anx3" class="card"
+            style="display: none; border-color: #0ea5e9; margin-bottom: 24px;">
+            <div class="card-bd">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <h3 style="margin: 0; font-size: 18px; color: #0369a1;">Uploaded PDF Preview</h3>
+                <button class="btn btn-sm btn-danger" onclick="closePDFPreviewAnx3()"
+                  style="display:inline-flex; align-items:center; gap:6px;">
+                  <i data-lucide="x" style="width:14px; height:14px;"></i>
+                  <span>Close Preview</span>
+                </button>
+              </div>
+              <iframe id="pdf-iframe-anx3"
+                style="width: 100%; height: 600px; border: 1px solid #e5e7eb; border-radius: 6px; background: #f9fafb;"></iframe>
+            </div>
+          </div>
+
+          <div class="notif notif-info" style="margin-bottom:16px">
+            Download the Excel templates ΓåÆ Fill values locally ΓåÆ Upload below. You can also edit cell content inline.
+          </div>
+
+          <div class="card">
+            <div class="card-bd">
+
+              <!-- Section A: Cluster Details -->
+              <div class="anx-section">
+                <div class="anx-section-header"
+                  style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+                  <div class="anx-section-title" style="font-weight:bold; font-size:14px;">a) Cluster Details:</div>
+                  <div style="display:flex; gap:8px;">
+                    <button class="btn btn-excel-template btn-xs" onclick="exportClusterXlsx()"
+                      style="display:inline-flex; align-items:center; gap:6px;">
+                      <i data-lucide="download" style="width:12px; height:12px;"></i>
+                      <span>Export to Excel</span>
+                    </button>
+                    <label class="btn btn-excel-upload btn-xs"
+                      style="cursor:pointer; display:inline-flex; align-items:center; gap:6px; margin-bottom:0;">
+                      <i data-lucide="upload" style="width:12px; height:12px;"></i>
+                      <span>Upload Cluster Excel</span>
+                      <input type="file" accept=".xlsx,.xls" hidden onchange="uploadExcel(event,'cluster')">
+                    </label>
+                  </div>
+                </div>
+
+                <div class="tbl-wrap">
+                  <table class="anx-tbl" id="anx3-clusters">
+                    <thead>
+                      <tr>
+                        <th>River Name</th>
+                        <th>Cluster No.</th>
+                        <th>Lease No.</th>
+                        <th>Location (Riverbed / Patta Land)</th>
+                        <th>Village</th>
+                        <th>Area (in Ha.)</th>
+                        <th>Total Excavation (MT)</th>
+                        <th>Total Mineral Excavation (MT) (Considering 60% as per EMGSM, 2020)</th>
+                        <th style="width: 50px;" class="no-print">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="clusterBody">
+                      <!-- rows injected by JS -->
+                    </tbody>
+                    <tfoot id="clusterFoot">
+                      <!-- totals injected by JS -->
+                    </tfoot>
+                  </table>
+                </div>
+
+                <div class="section-footer" style="margin-top:12px;">
+                  <button class="btn btn-xs btn-outline" onclick="addClusterRow()"
+                    style="display:inline-flex; align-items:center; gap:6px;">
+                    <i data-lucide="plus" style="width:12px; height:12px;"></i>
+                    <span>Add Cluster Row</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Section B: Contiguous Clusters -->
+              <div class="anx-section" style="margin-top: 32px;">
+                <div class="anx-section-header"
+                  style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+                  <div class="anx-section-title" style="font-weight:bold; font-size:14px;">b) Contiguous Clusters:</div>
+                  <div style="display:flex; gap:8px;">
+                    <button class="btn btn-excel-template btn-xs" onclick="exportContXlsx()"
+                      style="display:inline-flex; align-items:center; gap:6px;">
+                      <i data-lucide="download" style="width:12px; height:12px;"></i>
+                      <span>Export to Excel</span>
+                    </button>
+                    <label class="btn btn-excel-upload btn-xs"
+                      style="cursor:pointer; display:inline-flex; align-items:center; gap:6px; margin-bottom:0;">
+                      <i data-lucide="upload" style="width:12px; height:12px;"></i>
+                      <span>Upload Contiguous Excel</span>
+                      <input type="file" accept=".xlsx,.xls" hidden onchange="uploadExcel(event,'contiguous')">
+                    </label>
+                  </div>
+                </div>
+
+                <div class="tbl-wrap">
+                  <table class="anx-tbl" id="anx3-contiguous">
+                    <thead>
+                      <tr>
+                        <th>River Name</th>
+                        <th>Contiguous Cluster No.</th>
+                        <th>Cluster No.</th>
+                        <th>Number of leases in the cluster</th>
+                        <th>Location (Riverbed / Patta Land)</th>
+                        <th>Distance between clusters</th>
+                        <th>Village</th>
+                        <th>Area Of Cluster (Ha)</th>
+                        <th>Total Mineral Excavation (MT) (Considering 60% as per EMGSM, 2020)</th>
+                        <th style="width: 50px;" class="no-print">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="contBody">
+                      <!-- rows injected by JS -->
+                    </tbody>
+                    <tfoot id="contFoot">
+                      <!-- totals injected by JS -->
+                    </tfoot>
+                  </table>
+                </div>
+
+                <div class="section-footer" style="margin-top:12px;">
+                  <button class="btn btn-xs btn-outline" onclick="addContRow()"
+                    style="display:inline-flex; align-items:center; gap:6px;">
+                    <i data-lucide="plus" style="width:12px; height:12px;"></i>
+                    <span>Add Contiguous Row</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Final Action Area -->
+              <div class="final-actions" style="margin-top: 32px; display: flex; justify-content: center;">
+                <button class="btn btn-pdf-upload btn-lg" onclick="exportAnx3PDF(this)"
+                  style="display:inline-flex; align-items:center; gap:8px;">
+                  <i data-lucide="file-text" style="width:18px; height:18px;"></i>
+                  <span>Download Final Annexure 3 PDF</span>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- ΓòÉΓòÉΓòÉ ANNEXURE IV ΓòÉΓòÉΓòÉ -->
+        <div id="view-anx4" class="view">
+          <div class="header-row">
+            <div>
+              <div class="page-title">Annexure IV ΓÇö Transportation Routes</div>
+              <div class="page-sub">Transportation routes for individual leases and leases in clusters</div>
+            </div>
+            <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+              <span id="anx4-uploaded-filename"
+                style="font-size:12px; color:var(--text-soft); font-weight:600; display:none; padding:4px 8px; background:var(--off); border-radius:var(--r-xs); border:1px solid var(--border);"></span>
+              <button id="anx4-preview-btn" class="btn btn-outline btn-sm"
+                style="display:none; align-items:center; gap:6px;" onclick="togglePDFPreviewAnx4()"><i data-lucide="eye"
+                  style="width:14px; height:14px;"></i> Preview PDF</button>
+              <button id="anx4-download-btn" class="btn btn-pdf-download btn-sm" style="display:none;"
+                onclick="downloadPdfAnx4()"><i data-lucide="download" style="width:14px; height:14px;"></i> Download
+                PDF</button>
+              <button id="anx4-delete-btn" class="btn btn-danger btn-sm"
+                style="display:none; align-items:center; gap:6px;" onclick="deletePdfAnx4()"><i data-lucide="trash-2"
+                  style="width:14px; height:14px;"></i> Delete PDF</button>
+              <label class="btn btn-pdf-upload btn-sm"
+                style="cursor:pointer; margin-bottom:0; display:inline-flex; align-items:center; gap:6px;">
+                <i data-lucide="upload" style="width:14px; height:14px;"></i>
+                <span>Upload PDF</span>
+                <input type="file" accept="application/pdf" id="anx4-pdf-input" hidden
+                  onchange="handlePDFUploadAnx4(event)">
+              </label>
+            </div>
+          </div>
+
+          <!-- PDF Preview Section (Hidden by default) -->
+          <div id="pdf-preview-section-anx4" class="card"
+            style="display: none; border-color: #0ea5e9; margin-bottom: 24px;">
+            <div class="card-bd">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <h3 style="margin: 0; font-size: 18px; color: #0369a1;">Uploaded PDF Preview</h3>
+                <button class="btn btn-sm btn-danger" onclick="closePDFPreviewAnx4()"
+                  style="display:inline-flex; align-items:center; gap:6px;">
+                  <i data-lucide="x" style="width:14px; height:14px;"></i>
+                  <span>Close Preview</span>
+                </button>
+              </div>
+              <iframe id="pdf-iframe-anx4"
+                style="width: 100%; height: 600px; border: 1px solid #e5e7eb; border-radius: 6px; background: #f9fafb;"></iframe>
+            </div>
+          </div>
+
+          <!-- SECTION A: INDIVIDUAL LEASE ROUTES -->
+          <div style="font-weight:bold; font-size:15px; color:var(--text-mid); margin-bottom:12px;">Individual Lease
+            Routes:</div>
+          <div id="individual-routes-container">
+            <!-- table blocks injected dynamically -->
+          </div>
+          <div style="margin-bottom:30px; margin-top:12px;">
+            <button class="btn btn-sm btn-pdf-upload" onclick="addRouteTableBlock()"
+              style="display:inline-flex; align-items:center; gap:6px;">
+              <i data-lucide="plus-circle" style="width:14px; height:14px;"></i>
+              <span>Add Another Table / Section</span>
+            </button>
+          </div>
+
+          <!-- SECTION B: CLUSTER TRANSPORTATION ROUTES -->
+          <div style="font-weight:bold; font-size:15px; color:var(--text-mid); margin-bottom:12px; margin-top:32px;">
+            Cluster Transportation Routes:</div>
+          <div id="cluster-routes-container">
+            <!-- table blocks injected dynamically -->
+          </div>
+          <div style="margin-bottom:30px; margin-top:12px;">
+            <button class="btn btn-sm btn-pdf-upload" onclick="addClusterTableBlock()"
+              style="display:inline-flex; align-items:center; gap:6px;">
+              <i data-lucide="plus-circle" style="width:14px; height:14px;"></i>
+              <span>Add Another Table / Section</span>
+            </button>
+          </div>
+
+          <!-- Final Action Area -->
+          <div class="final-actions" style="margin-top:32px; display:flex; justify-content:center;">
+            <button class="btn btn-pdf-upload btn-lg" onclick="exportPDF()"
+              style="display:inline-flex; align-items:center; gap:8px;">
+              <i data-lucide="file-text" style="width:18px; height:18px;"></i>
+              <span>Download Final Annexure 4 PDF</span>
+            </button>
+          </div>
+        </div>
+        <!-- ΓòÉΓòÉΓòÉ ANNEXURE V ΓòÉΓòÉΓòÉ -->
+        <div id="view-anx5" class="view">
+          <div class="header-row">
+            <div>
+              <div class="page-title">Annexure V ΓÇö Bench Mark & CORS</div>
+              <div class="page-sub">Permanent bench mark records and CORS station coordinates</div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <button class="btn btn-excel-template btn-sm" onclick="downloadAnxTemplate(5)">
+                <i data-lucide="file-spreadsheet" style="width:14px; height:14px;"></i>
+                <span>Excel Template</span>
+              </button>
+              <label class="btn btn-excel-upload btn-sm"
+                style="cursor:pointer; margin-bottom:0; display:inline-flex; align-items:center; gap:6px;">
+                <i data-lucide="upload" style="width:14px; height:14px;"></i>
+                <span>Upload Excel</span>
+                <input type="file" accept=".xlsx,.xls" hidden onchange="handleAnxUpload(event,5)">
+              </label>
+              <button class="btn btn-pdf-upload btn-sm" onclick="exportAnxPDF(5)">
+                <i data-lucide="file-text" style="width:14px; height:14px;"></i>
+                <span>Export PDF</span>
+              </button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-hd">
+              <div class="card-title">Bench Mark & CORS Points</div>
+            </div>
+            <div class="card-bd">
+              <div class="tbl-wrap">
+                <table class="anx-tbl" id="anx5-benchmarks" style="min-width:900px">
+                  <thead>
+                    <tr>
+                      <th>Point Name</th>
+                      <th>Type</th>
+                      <th>Latitude</th>
+                      <th>Longitude</th>
+                      <th>Elevation (m)</th>
+                      <th>Remarks</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td contenteditable>BM-JAL-01</td>
+                      <td><select>
+                          <option>Bench Mark</option>
+                          <option>CORS</option>
+                        </select></td>
+                      <td contenteditable class="coord-input">31.025890 N</td>
+                      <td contenteditable class="coord-input">75.304797 E</td>
+                      <td contenteditable>236.45</td>
+                      <td contenteditable>Riverbank reference point</td>
+                      <td>
+                        <button class="btn btn-xs btn-danger" onclick="delRow(this)"
+                          style="display:inline-flex; align-items:center; justify-content:center; padding:4px;">
+                          <i data-lucide="trash-2" style="width:12px; height:12px;"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <button class="btn btn-xs btn-outline"
+                style="margin-top:8px; display:inline-flex; align-items:center; gap:6px;"
+                onclick="addRow('anx5-benchmarks',['','<select><option>Bench Mark</option><option>CORS</option></select>','','','','','<button class=\'btn btn-xs btn-danger\' onclick=\'delRow(this)\' style=\'display:inline-flex;align-items:center;justify-content:center;padding:4px;\'><i data-lucide=\'trash-2\' style=\'width:12px;height:12px;\'></i\></button>']);">
+                <i data-lucide="plus" style="width:12px; height:12px;"></i>
+                <span>Add Point</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ΓòÉΓòÉΓòÉ ANNEXURE VI ΓòÉΓòÉΓòÉ -->
+        <div id="view-anx6" class="view">
+          <div class="header-row">
+            <div>
+              <div class="page-title">Annexure VI ΓÇö Final Cluster Details</div>
+              <div class="page-sub">Finalized cluster summaries and total area computations</div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <button class="btn btn-excel-template btn-sm" onclick="downloadAnxTemplate(6)">
+                <i data-lucide="file-spreadsheet" style="width:14px; height:14px;"></i>
+                <span>Excel Template</span>
+              </button>
+              <label class="btn btn-excel-upload btn-sm"
+                style="cursor:pointer; margin-bottom:0; display:inline-flex; align-items:center; gap:6px;">
+                <i data-lucide="upload" style="width:14px; height:14px;"></i>
+                <span>Upload Excel</span>
+                <input type="file" accept=".xlsx,.xls" hidden onchange="handleAnxUpload(event,6)">
+              </label>
+              <button class="btn btn-pdf-upload btn-sm" onclick="exportAnxPDF(6)">
+                <i data-lucide="file-text" style="width:14px; height:14px;"></i>
+                <span>Export PDF</span>
+              </button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-hd">
+              <div class="card-title">Final Cluster Summary</div>
+            </div>
+            <div class="card-bd">
+              <div class="tbl-wrap">
+                <table class="anx-tbl" id="anx6-final-clusters" style="min-width:1000px">
+                  <thead>
+                    <tr>
+                      <th>Cluster No.</th>
+                      <th>River</th>
+                      <th>Total Area (Ha)</th>
+                      <th>Total Excavation (MT)</th>
+                      <th>Mineral @60% (MT)</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td contenteditable>1</td>
+                      <td contenteditable>Sutlej</td>
+                      <td contenteditable>134.40</td>
+                      <td contenteditable>1074334.80</td>
+                      <td contenteditable>644600.88</td>
+                      <td><select>
+                          <option>Approved</option>
+                          <option>Pending</option>
+                        </select></td>
+                      <td>
+                        <button class="btn btn-xs btn-danger" onclick="delRow(this)"
+                          style="display:inline-flex; align-items:center; justify-content:center; padding:4px;">
+                          <i data-lucide="trash-2" style="width:12px; height:12px;"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <button class="btn btn-xs btn-outline"
+                style="margin-top:8px; display:inline-flex; align-items:center; gap:6px;"
+                onclick="addRow('anx6-final-clusters',['','', '0.00','0','0','<select><option>Approved</option><option>Pending</option></select>','<button class=\'btn btn-xs btn-danger\' onclick=\'delRow(this)\' style=\'display:inline-flex;align-items:center;justify-content:center;padding:4px;\'><i data-lucide=\'trash-2\' style=\'width:12px;height:12px;\'></i\></button>']);">
+                <i data-lucide="plus" style="width:12px; height:12px;"></i>
+                <span>Add Cluster</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ΓòÉΓòÉΓòÉ ANNEXURE VII ΓòÉΓòÉΓòÉ -->
+        <div id="view-anx7" class="view">
+          <div class="header-row">
+            <div>
+              <div class="page-title">Annexure VII ΓÇö Final Patta Lands</div>
+              <div class="page-sub">Final patta land summary with ownership and area details</div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <button class="btn btn-excel-template btn-sm" onclick="downloadAnxTemplate(7)">
+                <i data-lucide="file-spreadsheet" style="width:14px; height:14px;"></i>
+                <span>Excel Template</span>
+              </button>
+              <label class="btn btn-excel-upload btn-sm"
+                style="cursor:pointer; margin-bottom:0; display:inline-flex; align-items:center; gap:6px;">
+                <i data-lucide="upload" style="width:14px; height:14px;"></i>
+                <span>Upload Excel</span>
+                <input type="file" accept=".xlsx,.xls" hidden onchange="handleAnxUpload(event,7)">
+              </label>
+              <button class="btn btn-pdf-upload btn-sm" onclick="exportAnxPDF(7)">
+                <i data-lucide="file-text" style="width:14px; height:14px;"></i>
+                <span>Export PDF</span>
+              </button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-hd">
+              <div class="card-title">Patta Land Summary</div>
+            </div>
+            <div class="card-bd">
+              <div class="tbl-wrap">
+                <table class="anx-tbl" id="anx7-patta-final" style="min-width:900px">
+                  <thead>
+                    <tr>
+                      <th>Owner Name</th>
+                      <th>Patta No.</th>
+                      <th>Area (Ha)</th>
+                      <th>District</th>
+                      <th>Tehsil</th>
+                      <th>Village</th>
+                      <th>Remarks</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td contenteditable>Jaswinder Singh</td>
+                      <td contenteditable>123/1</td>
+                      <td contenteditable>2.50</td>
+                      <td contenteditable>Jalandhar</td>
+                      <td contenteditable>Phillaur</td>
+                      <td contenteditable>Kadiana</td>
+                      <td contenteditable>Agricultural</td>
+                      <td>
+                        <button class="btn btn-xs btn-danger" onclick="delRow(this)"
+                          style="display:inline-flex; align-items:center; justify-content:center; padding:4px;">
+                          <i data-lucide="trash-2" style="width:12px; height:12px;"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <button class="btn btn-xs btn-outline"
+                style="margin-top:8px; display:inline-flex; align-items:center; gap:6px;"
+                onclick="addRow('anx7-patta-final',['','','0.00','','','','','<button class=\'btn btn-xs btn-danger\' onclick=\'delRow(this)\' style=\'display:inline-flex;align-items:center;justify-content:center;padding:4px;\'><i data-lucide=\'trash-2\' style=\'width:12px;height:12px;\'></i\></button>']);">
+                <i data-lucide="plus" style="width:12px; height:12px;"></i>
+                <span>Add Patta Land</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ΓòÉΓòÉΓòÉ ANNEXURES EXTRA ΓòÉΓòÉΓòÉ -->
+        <div id="view-annexures-extra" class="view">
+          <div class="header-row">
+            <div>
+              <div class="page-title">Additional Annexures</div>
+              <div class="page-sub">Block Sand Ghats Coordinates, Bench Marks, CORS Stations, Final Cluster Details,
+                Patta Lands</div>
+            </div>
+          </div>
+          <div style="margin-bottom:12px">
+            <div class="card">
+              <div class="card-hd">
+                <div class="card-title">Upload Excel to Specific Table</div>
+              </div>
+              <div class="card-bd">
+                <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+                  <select id="table-upload-select"
+                    style="min-width:260px;padding:8px;border:1px solid var(--border);border-radius:6px">
+                    <option value="anx1-rivers">Annexure I ΓÇö Rivers</option>
+                    <option value="anx1-desilt">Annexure I ΓÇö De-Siltation</option>
+                    <option value="anx1-patta">Annexure I ΓÇö Patta Lands</option>
+                    <option value="anx1-msand">Annexure I ΓÇö M-Sand Plants</option>
+                    <option value="anx2-leases">Annexure II ΓÇö Leases</option>
+                    <option value="anx3-clusters">Annexure III ΓÇö Clusters</option>
+                    <option value="anx3-contiguous">Annexure III ΓÇö Contiguous Clusters</option>
+                    <option value="anx4-routes">Annexure IV ΓÇö Lease Routes</option>
+                    <option value="anx4-cluster-routes">Annexure IV ΓÇö Cluster Routes</option>
+                    <option value="anx5-benchmarks">Annexure V ΓÇö Bench Marks & CORS</option>
+                    <option value="anx6-final-clusters">Annexure VI ΓÇö Final Clusters</option>
+                    <option value="anx7-patta-final">Annexure VII ΓÇö Final Patta Lands</option>
+                  </select>
+                  <label class="btn btn-excel-upload btn-sm"
+                    style="cursor:pointer; margin-bottom:0; display:inline-flex; align-items:center; gap:6px;">
+                    <i data-lucide="upload" style="width:14px; height:14px;"></i>
+                    <span>Upload Excel for Selected Table</span>
+                    <input type="file" accept=".xlsx,.xls" hidden onchange="handleTableUpload(event)">
+                  </label>
+                  <div style="font-size:12px;color:var(--text-faint)">Select table ΓåÆ Upload Excel sheet (first sheet
+                    will be used)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="feature-tabs">
+            <div class="feature-tab active" onclick="switchAnxTab('coords',this)">Block Sand Ghats Coords</div>
+            <div class="feature-tab" onclick="switchAnxTab('benchmark',this)">Bench Mark & CORS</div>
+            <div class="feature-tab" onclick="switchAnxTab('final-clusters',this)">Final Cluster Details</div>
+            <div class="feature-tab" onclick="switchAnxTab('patta-final',this)">Final Patta Lands</div>
+            <div class="feature-tab" onclick="switchAnxTab('desilt-final',this)">Final De-Siltation</div>
+          </div>
+          <div id="anx-tab-coords">
+            <div class="card">
+              <div class="card-hd">
+                <div class="card-title">Final Block Sand Ghats Coordinates</div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <button class="btn btn-excel-template btn-xs" onclick="toast('Template downloaded','success')"
+                    style="display:inline-flex; align-items:center; gap:4px;">
+                    <i data-lucide="file-spreadsheet" style="width:12px; height:12px;"></i>
+                    <span>Excel</span>
+                  </button>
+                  <button class="btn btn-pdf-upload btn-xs" onclick="exportAnxPDF('coords')"
+                    style="display:inline-flex; align-items:center; gap:4px;">
+                    <i data-lucide="file-text" style="width:12px; height:12px;"></i>
+                    <span>PDF</span>
+                  </button>
+                </div>
+              </div>
+              <div class="card-bd">
+                <div class="tbl-wrap">
+                  <table class="anx-tbl" id="anx-coords-tbl" style="min-width:900px">
+                    <thead>
+                      <tr>
+                        <th>Sl.No.</th>
+                        <th>River Details</th>
+                        <th>Sand Bar Code</th>
+                        <th>Lease Details</th>
+                        <th>Area (Ha)</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td contenteditable>1</td>
+                        <td contenteditable>Sutlej</td>
+                        <td contenteditable>JL-ST-01</td>
+                        <td contenteditable>Jalandhar Sutlej-1<br>Vill-Kadiana, Block-Phillaur</td>
+                        <td contenteditable>12.50</td>
+                        <td contenteditable class="coord-input">31┬░04'48.886"N<br>31┬░04'18.121"N<br>31┬░04'07.214"N</td>
+                        <td contenteditable class="coord-input">75┬░53'39.686"E<br>75┬░53'37.489"E<br>75┬░53'34.086"E</td>
+                        <td>
+                          <button class="btn btn-xs btn-danger" onclick="delRow(this)"
+                            style="display:inline-flex; align-items:center; justify-content:center; padding:4px;">
+                            <i data-lucide="trash-2" style="width:12px; height:12px;"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <button class="btn btn-xs btn-outline"
+                  style="margin-top:8px; display:inline-flex; align-items:center; gap:6px;"
+                  onclick="addRow('anx-coords-tbl',['','','','','','','','<button class=\'btn btn-xs btn-danger\' onclick=\'delRow(this)\' style=\'display:inline-flex;align-items:center;justify-content:center;padding:4px;\'><i data-lucide=\'trash-2\' style=\'width:12px;height:12px;\'></i\></button>']);">
+                  <i data-lucide="plus" style="width:12px; height:12px;"></i>
+                  <span>Add Row</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div id="anx-tab-benchmark" style="display:none">
+            <div class="g2">
+              <div class="card">
+                <div class="card-hd">
+                  <div class="card-title">Bench Mark Table</div>
+                </div>
+                <div class="card-bd">
+                  <div class="tbl-wrap">
+                    <table class="anx-tbl" id="anx-benchmark-tbl" style="min-width:800px">
+                      <thead>
+                        <tr>
+                          <th>Permanent Bench Mark</th>
+                          <th>Coordinates</th>
+                          <th>Elevation (m)</th>
+                          <th>Sandbar Code</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td contenteditable>BM-JAL-01</td>
+                          <td contenteditable class="coord-input">31.025890 N<br>75.304797 E</td>
+                          <td contenteditable>236.45</td>
+                          <td contenteditable>JL-ST-01 to JL-ST-05</td>
+                          <td><button class="btn btn-xs btn-danger" onclick="delRow(this)"
+                              style="display:inline-flex; align-items:center; justify-content:center; padding:4px;"><i
+                                data-lucide="trash-2" style="width:12px; height:12px;"></i></button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <button class="btn btn-xs btn-outline"
+                    style="margin-top:8px; display:inline-flex; align-items:center; gap:6px;"
+                    onclick="addRow('anx-benchmark-tbl',['','','','','<button class=\'btn btn-xs btn-danger\' onclick=\'delRow(this)\' style=\'display:inline-flex;align-items:center;justify-content:center;padding:4px;\'><i data-lucide=\'trash-2\' style=\'width:12px;height:12px;\'></i\></button>']);">
+                    <i data-lucide="plus" style="width:12px; height:12px;"></i>
+                    <span>Add Row</span>
+                  </button>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-hd">
+                  <div class="card-title">Survey of India (CORS Station)</div>
+                </div>
+                <div class="card-bd">
+                  <div class="tbl-wrap">
+                    <table class="anx-tbl" id="anx-cors-tbl" style="min-width:800px">
+                      <thead>
+                        <tr>
+                          <th>CORS Station Name</th>
+                          <th>Lat</th>
+                          <th>Lon</th>
+                          <th>Height (m)</th>
+                          <th>Station Code</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td contenteditable>ANANDPURSAHIB</td>
+                          <td contenteditable class="coord-input">N 31┬░14'31.68332"</td>
+                          <td contenteditable class="coord-input">E 76┬░29'17.88727"</td>
+                          <td contenteditable>263.387</td>
+                          <td contenteditable>ANAD</td>
+                          <td><button class="btn btn-xs btn-danger" onclick="delRow(this)"
+                              style="display:inline-flex; align-items:center; justify-content:center; padding:4px;"><i
+                                data-lucide="trash-2" style="width:12px; height:12px;"></i></button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <button class="btn btn-xs btn-outline"
+                    style="margin-top:8px; display:inline-flex; align-items:center; gap:6px;"
+                    onclick="addRow('anx-cors-tbl',['','','','','','<button class=\'btn btn-xs btn-danger\' onclick=\'delRow(this)\' style=\'display:inline-flex;align-items:center;justify-content:center;padding:4px;\'><i data-lucide=\'trash-2\' style=\'width:12px;height:12px;\'></i\></button>']);">
+                    <i data-lucide="plus" style="width:12px; height:12px;"></i>
+                    <span>Add Row</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="anx-tab-final-clusters" style="display:none">
+            <div class="card">
+              <div class="card-hd">
+                <div class="card-title">Final Cluster Details</div>
+              </div>
+              <div class="card-bd">
+                <div class="tbl-wrap">
+                  <table class="anx-tbl" id="anx-final-clusters-tbl" style="min-width:1000px">
+                    <thead>
+                      <tr>
+                        <th>River Name</th>
+                        <th>Cluster No.</th>
+                        <th>Lease No.</th>
+                        <th>Location</th>
+                        <th>Village</th>
+                        <th>Area (Ha)</th>
+                        <th>Total Excav. (MT)</th>
+                        <th>Mineral Excav. @60% (MT)</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td contenteditable>Sutlej</td>
+                        <td contenteditable>1</td>
+                        <td contenteditable>NPRO_JL_PL_ST_01<br>NPRO_JL_PL_ST_02</td>
+                        <td><select>
+                            <option>Riverbed</option>
+                            <option>Patta Land</option>
+                          </select></td>
+                        <td contenteditable>Kadiana,<br>Phillaur</td>
+                        <td contenteditable oninput="calcClusterRow(this)">45.20</td>
+                        <td contenteditable oninput="calcClusterRow(this)">1074334.80</td>
+                        <td class="anx3-mineral">644600.88</td>
+                        <td><button class="btn btn-xs btn-danger" onclick="delRow(this)"
+                            style="display:inline-flex; align-items:center; justify-content:center; padding:4px;"><i
+                              data-lucide="trash-2" style="width:12px; height:12px;"></i></button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <button class="btn btn-xs btn-outline"
+                  style="margin-top:8px; display:inline-flex; align-items:center; gap:6px;"
+                  onclick="addAnx3Row('anx-final-clusters-tbl')">
+                  <i data-lucide="plus" style="width:12px; height:12px;"></i>
+                  <span>Add Row</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div id="anx-tab-patta-final" style="display:none">
+            <div class="card">
+              <div class="card-hd">
+                <div class="card-title">Final Patta Lands / Khatedari Land (Existing & Proposed)</div>
+              </div>
+              <div class="card-bd">
+                <div class="tbl-wrap">
+                  <table class="anx-tbl" id="anx-patta-final-tbl" style="min-width:1200px">
+                    <thead>
+                      <tr>
+                        <th>Sl.No.</th>
+                        <th>Owner</th>
+                        <th>Sy.No (Khasra)</th>
+                        <th>Area</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                        <th>District</th>
+                        <th>Tehsil</th>
+                        <th>Village</th>
+                        <th>Total Reserve (MT) @BD 1.52</th>
+                        <th>Mineral Mined (MT) @60%</th>
+                        <th>Existing/Proposed</th>
+                        <th>Remarks</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td contenteditable>1</td>
+                        <td contenteditable>Jaswinder Singh</td>
+                        <td contenteditable>123/1<br>124/2</td>
+                        <td contenteditable>2.50</td>
+                        <td contenteditable class="coord-input">31┬░00'56"N</td>
+                        <td contenteditable class="coord-input">75┬░54'59"E</td>
+                        <td contenteditable>Jalandhar</td>
+                        <td contenteditable>Phillaur</td>
+                        <td contenteditable>Kadiana</td>
+                        <td contenteditable>57000</td>
+                        <td contenteditable>34200</td>
+                        <td><select>
+                            <option>Existing</option>
+                            <option>Proposed</option>
+                          </select></td>
+                        <td contenteditable>ΓÇö</td>
+                        <td><button class="btn btn-xs btn-danger" onclick="delRow(this)"
+                            style="display:inline-flex; align-items:center; justify-content:center; padding:4px;"><i
+                              data-lucide="trash-2" style="width:12px; height:12px;"></i></button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <button class="btn btn-xs btn-outline"
+                  style="margin-top:8px; display:inline-flex; align-items:center; gap:6px;"
+                  onclick="toast('Row added','info')">
+                  <i data-lucide="plus" style="width:12px; height:12px;"></i>
+                  <span>Add Row</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div id="anx-tab-desilt-final" style="display:none">
+            <div class="card">
+              <div class="card-hd">
+                <div class="card-title">Final De-Siltation Locations (Existing & Proposed)</div>
+              </div>
+              <div class="card-bd">
+                <div class="tbl-wrap">
+                  <table class="anx-tbl" id="anx-desilt-final-tbl" style="min-width:1000px">
+                    <thead>
+                      <tr>
+                        <th>Name of Reservoir/Dams</th>
+                        <th>Controlled By</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                        <th>District</th>
+                        <th>Tehsil</th>
+                        <th>Village</th>
+                        <th>Size (Ha)</th>
+                        <th>Quantity MT/Year</th>
+                        <th>Existing/Proposed</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td contenteditable>Harike Dam</td>
+                        <td contenteditable>State Govt.</td>
+                        <td contenteditable class="coord-input">31┬░10'22"N</td>
+                        <td contenteditable class="coord-input">74┬░57'48"E</td>
+                        <td contenteditable>Ferozepur</td>
+                        <td contenteditable>Harike</td>
+                        <td contenteditable>Harike</td>
+                        <td contenteditable>10.93</td>
+                        <td contenteditable>15000</td>
+                        <td><select>
+                            <option>Existing</option>
+                            <option>Proposed</option>
+                          </select></td>
+                        <td><button class="btn btn-xs btn-danger" onclick="delRow(this)"
+                            style="display:inline-flex; align-items:center; justify-content:center; padding:4px;"><i
+                              data-lucide="trash-2" style="width:12px; height:12px;"></i></button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <button class="btn btn-xs btn-outline"
+                  style="margin-top:8px; display:inline-flex; align-items:center; gap:6px;"
+                  onclick="toast('Row added','info')">
+                  <i data-lucide="plus" style="width:12px; height:12px;"></i>
+                  <span>Add Row</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ΓòÉΓòÉΓòÉ DEMAND TABLE ΓòÉΓòÉΓòÉ -->
+        <div id="view-demand-table" class="view">
+          <div class="header-row">
+            <div>
+              <div class="page-title">Projected Demand of Gravel (in MT) District Wise</div>
+              <div class="page-sub">Year-wise demand projections for all Punjab districts</div>
+            </div>
+            <div style="display:flex;gap:8px">
+              <button class="btn btn-outline btn-sm" onclick="addDemandRow()">+ Add District</button>
+              <button class="btn btn-teal btn-sm" onclick="exportDemandExcel()">Γ¼ç Excel</button>
+              <button class="btn btn-saffron btn-sm" onclick="exportDemandPDF()">≡ƒôä PDF</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-bd" style="overflow-x:auto">
+              <table class="demand-tbl" id="demand-tbl" style="min-width:900px">
+                <thead>
+                  <tr>
+                    <th style="text-align:left">Sr. No.</th>
+                    <th style="text-align:left">District Name</th>
+                    <th>2022-23</th>
+                    <th>2023-24</th>
+                    <th>2024-25</th>
+                    <th>2025-26</th>
+                    <th>2026-27</th>
+                    <th>2027-28</th>
+                  </tr>
+                </thead>
+                <tbody id="demand-tbody"></tbody>
+                <tfoot>
+                  <tr class="total-row" id="demand-total">
+                    <td colspan="2">TOTAL</td>
+                    <td id="dt-0">0</td>
+                    <td id="dt-1">0</td>
+                    <td id="dt-2">0</td>
+                    <td id="dt-3">0</td>
+                    <td id="dt-4">0</td>
+                    <td id="dt-5">0</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ΓòÉΓòÉΓòÉ AUCTION TABLE ΓòÉΓòÉΓòÉ -->
+        <div id="view-auction-table" class="view">
+          <div class="header-row">
+            <div>
+              <div class="page-title">Proforma for Auctioned Sites ΓÇö District Jalandhar</div>
+              <div class="page-sub">Mining sites auctioned as per DPR guidelines</div>
+            </div>
+            <div style="display:flex;gap:8px">
+              <button class="btn btn-outline btn-sm" onclick="addAuctionRow()">+ Add Row</button>
+              <button class="btn btn-teal btn-sm" onclick="toast('Excel downloaded','success')">Γ¼ç Excel</button>
+              <button class="btn btn-saffron btn-sm" onclick="exportAuctionPDF()">≡ƒôä PDF</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-bd" style="overflow-x:auto">
+              <table class="tbl" id="auction-tbl" style="min-width:1300px">
+                <thead>
+                  <tr>
+                    <th>Sr No.</th>
+                    <th>Site Name</th>
+                    <th>Type of Mine</th>
+                    <th>Date of Grant</th>
+                    <th>Date of Start</th>
+                    <th>Qty Allowed EC (MT/yr)</th>
+                    <th>Qty Extracted (MT) till 30-Jun-2025</th>
+                    <th>Balance Qty (1-Dec-2025)</th>
+                    <th>EC Status</th>
+                    <th>Reason Not Operated</th>
+                    <th>Reason No EC Applied</th>
+                    <th>Remarks</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="auction-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ΓòÉΓòÉΓòÉ SUMMARY TABLE ΓòÉΓòÉΓòÉ -->
+        <div id="view-summary-table" class="view">
+          <div class="header-row">
+            <div>
+              <div class="page-title">Source-wise Summary of Excavation Quantity</div>
+              <div class="page-sub">District-wise summary for all mining sources</div>
+            </div>
+            <div style="display:flex;gap:8px">
+              <button class="btn btn-outline btn-sm" onclick="addSummaryRow()">+ Add Row</button>
+              <button class="btn btn-teal btn-sm" onclick="toast('Excel downloaded','success')">Γ¼ç Excel</button>
+              <button class="btn btn-saffron btn-sm" onclick="exportSummaryPDF()">≡ƒôä PDF</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-bd">
+              <div class="tbl-wrap">
+                <table class="tbl" id="summary-tbl" style="min-width:900px">
+                  <thead>
+                    <tr>
+                      <th>Source</th>
+                      <th>No. of Proposed Sites</th>
+                      <th>Area (Ha)</th>
+                      <th>Total Excav. (Tonnes)</th>
+                      <th>Total Excav. @60% EMGSM 2020 (Tonnes)</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="summary-tbody"></tbody>
+                  <tfoot>
+                    <tr class="total-row">
+                      <td><strong>TOTAL</strong></td>
+                      <td id="sum-sites">0</td>
+                      <td id="sum-area">0</td>
+                      <td id="sum-excav">0</td>
+                      <td id="sum-excav60">0</td>
+                      <td></td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ΓòÉΓòÉΓòÉ BENCH MARK TABLE ΓòÉΓòÉΓòÉ -->
+        <div id="view-benchmark-table" class="view">
+          <div class="header-row">
+            <div>
+              <div class="page-title">Bench Mark & CORS Station</div>
+              <div class="page-sub">Survey reference points and CORS station data</div>
+            </div>
+            <button class="btn btn-saffron btn-sm" onclick="exportAnxPDF('benchmark')">≡ƒôä Export PDF</button>
+          </div>
+          <div class="notif notif-info" style="margin-bottom:14px">This section is also available under Additional
+            Annexures. Data is shared.</div>
+          <button class="btn btn-outline btn-sm"
+            onclick="showView('annexures-extra',null);switchAnxTab('benchmark',null)">Go to Bench Mark Section
+            ΓåÆ</button>
+        </div>
+
+        <!-- ΓòÉΓòÉΓòÉ E-SIGNATURES ΓòÉΓòÉΓòÉ -->
+        <div id="view-esign" class="view">
+          <div class="header-row">
+            <div>
+              <div class="page-title">E-Signature Panel</div>
+              <div class="page-sub">Sequential digital signing workflow ┬╖ 5-level authority hierarchy</div>
+            </div>
+          </div>
+          <div class="notif notif-info" style="margin-bottom:16px">≡ƒöÉ Signatures are sequential ΓÇö each authority must
+            complete before the next is notified. Supports DSC, Aadhaar eSign, and OTP-based signing.</div>
+          <div id="sig-list" style="display:flex;flex-direction:column;gap:10px"></div>
+        </div>
+
+        <!-- ΓòÉΓòÉΓòÉ GENERATE PDF ΓòÉΓòÉΓòÉ -->
+        <div id="view-generate" class="view">
+          <div class="header-row">
+            <div>
+              <div class="page-title">Generate Final DSR PDF</div>
+              <div class="page-sub">Professional government-format report with all sections, annexures, and digital
+                signatures</div>
+            </div>
+          </div>
+          <div class="g2">
+            <div>
+              <div class="card" style="margin-bottom:16px">
+                <div class="card-hd">
+                  <div class="card-title">Completion Checklist</div>
+                </div>
+                <div class="card-bd" id="final-checklist"></div>
+              </div>
+              <div class="card">
+                <div class="card-hd">
+                  <div class="card-title">PDF Options</div>
+                </div>
+                <div class="card-bd">
+                  <div class="field-group">
+                    <div class="field-row">
+                      <div class="field"><label>District</label><select id="pdf-district">
+                          <option>Jalandhar</option>
+                          <option>Ludhiana</option>
+                          <option>Amritsar</option>
+                        </select></div>
+                      <div class="field"><label>Year</label><input id="pdf-year" value="2025-26"></div>
+                    </div>
+                    <div class="field"><label>Report Version</label><input value="Final ┬╖ Approved Draft"></div>
+                  </div>
+                  <div class="divider"></div>
+                  <div style="display:flex;gap:9px;flex-wrap:wrap">
+                    <button class="btn btn-navy" style="display:inline-flex;align-items:center;gap:4px;"
+                      onclick="generateFinalPDF()"><i data-lucide="download"
+                        style="width:14px;height:14px;"></i>Generate Final PDF</button>
+                    <button class="btn btn-teal" style="display:inline-flex;align-items:center;gap:4px;"
+                      onclick="submitForReview()"><i data-lucide="send" style="width:14px;height:14px;"></i>Submit to
+                      Authority</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="card">
+                <div class="card-hd">
+                  <div class="card-title">PDF Preview</div>
+                </div>
+                <div class="card-bd">
+                  <div class="pdf-preview">
+                    <div style="font-size:11px;color:rgba(255,255,255,.6);margin-bottom:10px">Preview ΓÇö Final DSR Report
+                    </div>
+                    <div class="pdf-page-thumb">
+                      <div class="pdf-page-hd"><span>DISTRICT SURVEY REPORT</span></div>
+                      <div class="pdf-page-bd">
+                        <div class="pdf-line header"></div>
+                        <div class="pdf-line" style="height:8px;background:#e8eaf6;margin:6px 0"></div>
+                        <div class="pdf-line medium"></div>
+                        <div class="pdf-line short"></div>
+                        <div class="pdf-line"></div>
+                        <div class="pdf-line medium"></div>
+                        <div class="pdf-line short"></div>
+                        <div class="pdf-line"></div>
+                        <div class="pdf-line medium"></div>
+                        <div class="pdf-line" style="height:30px;background:#f5f5f5;margin:6px 0"></div>
+                        <div class="pdf-line short"></div>
+                        <div class="pdf-line medium"></div>
+                        <div class="pdf-line"></div>
+                      </div>
+                    </div>
+                    <div style="font-size:10px;color:rgba(255,255,255,.4);text-align:center">
+                      <span id="pdf-page-count">0</span> pages ┬╖ Ready to generate
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ΓòÉΓòÉΓòÉ REPORT HISTORY ΓòÉΓòÉΓòÉ -->
+        <div id="view-history" class="view">
+          <div class="header-row">
+            <div>
+              <div class="page-title">Report History</div>
+              <div class="page-sub">All previous DSR versions, approved reports, and revision history</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-bd">
+              <div class="tbl-wrap">
+                <table class="tbl">
+                  <thead>
+                    <tr>
+                      <th>Report Title</th>
+                      <th>District</th>
+                      <th>Year</th>
+                      <th>Version</th>
+                      <th>Generated On</th>
+                      <th>Status</th>
+                      <th>Signatures</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>DSR ΓÇö Jalandhar Sand Mining</td>
+                      <td>Jalandhar</td>
+                      <td>2024-25</td>
+                      <td>v3.0 Final</td>
+                      <td>Mar 15, 2025</td>
+                      <td><span class="badge badge-green">Approved</span></td>
+                      <td>5/5</td>
+                      <td><button class="btn btn-xs btn-outline">Γ¼ç Download</button></td>
+                    </tr>
+                    <tr>
+                      <td>DSR ΓÇö Jalandhar Sand Mining</td>
+                      <td>Jalandhar</td>
+                      <td>2024-25</td>
+                      <td>v2.1 Draft</td>
+                      <td>Feb 20, 2025</td>
+                      <td><span class="badge badge-amber">Rejected</span></td>
+                      <td>2/5</td>
+                      <td><button class="btn btn-xs btn-outline">≡ƒæü View</button></td>
+                    </tr>
+                    <tr>
+                      <td>DSR ΓÇö Ludhiana Mining Survey</td>
+                      <td>Ludhiana</td>
+                      <td>2023-24</td>
+                      <td>v1.0 Final</td>
+                      <td>Jun 5, 2024</td>
+                      <td><span class="badge badge-green">Approved</span></td>
+                      <td>5/5</td>
+                      <td><button class="btn btn-xs btn-outline">Γ¼ç Download</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ΓòÉΓòÉΓòÉ USER MANAGEMENT ΓòÉΓòÉΓòÉ -->
+        <div id="view-users" class="view">
+          <div class="header-row">
+            <div>
+              <div class="page-title">User Management</div>
+              <div class="page-sub">Manage portal users, roles, permissions, and section access</div>
+            </div>
+            <button class="btn btn-saffron btn-sm" onclick="toast('Add user form opened','info')">+ Add User</button>
+          </div>
+          <div class="card">
+            <div class="card-bd">
+              <div class="tbl-wrap">
+                <table class="tbl">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Role</th>
+                      <th>Department</th>
+                      <th>Status</th>
+                      <th>Last Login</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Rajinder Kumar</td>
+                      <td>rk@punjab.gov.in</td>
+                      <td><span class="badge badge-navy">SDO</span></td>
+                      <td>Revenue Dept., Jalandhar</td>
+                      <td><span class="badge badge-green">Active</span></td>
+                      <td>May 22, 2026</td>
+                      <td><button class="btn btn-xs btn-outline">Edit</button></td>
+                    </tr>
+                    <tr>
+                      <td>Dr. Suresh Verma</td>
+                      <td>sv@mining.punjab.gov.in</td>
+                      <td><span class="badge badge-teal">DMO</span></td>
+                      <td>Geology & Mining, Punjab</td>
+                      <td><span class="badge badge-green">Active</span></td>
+                      <td>May 21, 2026</td>
+                      <td><button class="btn btn-xs btn-outline">Edit</button></td>
+                    </tr>
+                    <tr>
+                      <td>Priya Sharma</td>
+                      <td>ps@iitropar.ac.in</td>
+                      <td><span class="badge badge-indigo">Reviewer</span></td>
+                      <td>IIT Ropar Research Cell</td>
+                      <td><span class="badge badge-green">Active</span></td>
+                      <td>May 22, 2026</td>
+                      <td><button class="btn btn-xs btn-outline">Edit</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- ΓòÉΓòÉΓòÉ MODALS ΓòÉΓòÉΓòÉ -->
+  <!-- Confirm Modal -->
+  <div id="modal-confirm" class="modal-overlay">
+    <div class="modal-box" style="max-width:400px; max-height: max-content;">
+      <div class="modal-hd">
+        <h3>Confirm Action</h3><button class="modal-close" onclick="closeModal('modal-confirm')">├ù</button>
+      </div>
+      <div class="modal-bd">
+        <p id="confirm-msg" style="font-size:14px; color:var(--text); font-weight: 500;"></p>
+      </div>
+      <div class="modal-ft">
+        <button class="btn btn-outline" onclick="closeModal('modal-confirm')">Cancel</button>
+        <button class="btn btn-danger" onclick="doConfirm()">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- New Project Modal -->
+  <div id="modal-project" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-hd">
+        <h3>Create New DSR Project</h3><button class="modal-close" onclick="closeModal('modal-project')">├ù</button>
+      </div>
+      <div class="modal-bd">
+        <div class="field-group">
+          <div class="field"><label>Report Title (optional)</label><input id="proj-title"
+              placeholder="District Survey Report for Sand Mining"></div>
+          <div class="field-row">
+            <div class="field"><label>District</label>
+              <select id="proj-district">
+                <option>Jalandhar</option>
+                <option>Ludhiana</option>
+                <option>Mansa</option>
+                <option>Hoshiarpur</option>
+                <option>Pathankot</option>
+                <option>Rupnagar</option>
+                <option>Tarn Taran</option>
+              </select>
+            </div>
+            <div class="field"><label>Year</label><input id="proj-year" value="2025-26"></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label>Mineral Type</label>
+              <select id="proj-mineral">
+                <option>Sand</option>
+                <option>RBM</option>
+                <option>Bajri</option>
+                <option>Gravel</option>
+              </select>
+            </div>
+            <div class="field"><label>River(s)</label><input id="proj-rivers" placeholder="Sutlej, Beas"></div>
+          </div>
+          <div class="field"><label>Prepared By</label><input id="proj-by" value="Sub-Divisional Committee"></div>
+        </div>
+      </div>
+      <div class="modal-ft">
+        <button class="btn btn-outline" onclick="closeModal('modal-project')">Cancel</button>
+        <button class="btn btn-saffron" onclick="createProject()">Create Project ΓåÆ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sign Modal -->
+  <div id="modal-sign" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-hd">
+        <h3 id="sign-modal-title">Digital Signature</h3><button class="modal-close"
+          onclick="closeModal('modal-sign')">├ù</button>
+      </div>
+      <div class="modal-bd">
+        <div id="sign-modal-content"></div>
+        <div class="notif notif-warn" style="margin-top:14px; display:flex; align-items:center; gap:8px;">
+          <i data-lucide="alert-triangle" style="width:16px; height:16px; flex-shrink:0;"></i>
+          <span>By signing, you certify the accuracy of the complete DSR report and EMGSM 2020 compliance.</span>
+        </div>
+        <div class="field" style="margin-top:14px"><label>OTP Verification (Demo: 123456)</label><input
+            class="otp-input" id="sign-otp" maxlength="6" placeholder="ΓÇöΓÇöΓÇöΓÇöΓÇöΓÇö"
+            oninput="this.value=this.value.replace(/\D/g,'')"></div>
+      </div>
+      <div class="modal-ft">
+        <button class="btn btn-outline" onclick="closeModal('modal-sign')">Cancel</button>
+        <button class="btn btn-saffron" onclick="doSign()">Confirm & Sign ΓåÆ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Authority Sign Modal -->
+  <div id="modal-auth-sign" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-hd">
+        <h3>Authority E-Signature</h3><button class="modal-close" onclick="closeModal('modal-auth-sign')">├ù</button>
+      </div>
+      <div class="modal-bd">
+        <div id="auth-sign-content"></div>
+        <div class="notif notif-warn" style="margin-top:14px; display:flex; align-items:center; gap:8px;">
+          <i data-lucide="alert-triangle" style="width:16px; height:16px; flex-shrink:0;"></i>
+          <span>Sequential signing ΓÇö your approval forwards to the next authority.</span>
+        </div>
+        <div class="field" style="margin-top:14px"><label>OTP (Demo: 123456)</label><input class="otp-input"
+            id="auth-otp" maxlength="6" placeholder="ΓÇöΓÇöΓÇöΓÇöΓÇöΓÇö" oninput="this.value=this.value.replace(/\D/g,'')"></div>
+      </div>
+      <div class="modal-ft">
+        <button class="btn btn-outline" onclick="closeModal('modal-auth-sign')">Cancel</button>
+        <button class="btn btn-saffron" onclick="authoritySign()">Sign & Approve ΓåÆ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="js/state.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/projects.js"></script>
+  <script src="js/frontmatter.js"></script>
+  <script src="js/chapters.js"></script>
+  <script src="js/plates.js"></script>
+  <script src="js/graphs.js"></script>
+  <script src="js/tables.js"></script>
+  <script src="js/anx1.js"></script>
+  <script src="js/anx2.js"></script>
+  <script src="js/anx3.js"></script>
+  <script src="js/anx4.js"></script>
+  <script src="js/anx5.js"></script>
+  <script src="js/anx6.js"></script>
+  <script src="js/anx7.js"></script>
+  <script src="js/signatures.js"></script>
+  <script src="js/pdf.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+        <!-- ═══ GENERATE PDF ═══ -->
+        <div id="view-generate" class="view">
+          <div class="header-row">
+            <div>
+              <div class="page-title">Generate Final DSR PDF</div>
+              <div class="page-sub">Professional government-format report with all sections, annexures, and digital
+                signatures</div>
+            </div>
+          </div>
+          <div class="g2">
+            <div>
+              <div class="card" style="margin-bottom:16px">
+                <div class="card-hd">
+                  <div class="card-title">Completion Checklist</div>
+                </div>
+                <div class="card-bd" id="final-checklist"></div>
+              </div>
+              <div class="card">
+                <div class="card-hd">
+                  <div class="card-title">PDF Options</div>
+                </div>
+                <div class="card-bd">
+                  <div class="field-group">
+                    <div class="field-row">
+                      <div class="field"><label>District</label><select id="pdf-district">
+                          <option>Jalandhar</option>
+                          <option>Ludhiana</option>
+                          <option>Amritsar</option>
+                        </select></div>
+                      <div class="field"><label>Year</label><input id="pdf-year" value="2025-26"></div>
+                    </div>
+                    <div class="field"><label>Report Version</label><input value="Final · Approved Draft"></div>
+                  </div>
+                  <div class="divider"></div>
+                  <div style="display:flex;gap:9px;flex-wrap:wrap">
+                    <button class="btn btn-navy" style="display:inline-flex;align-items:center;gap:4px;"
+                      onclick="generateFinalPDF()"><i data-lucide="download"
+                        style="width:14px;height:14px;"></i>Generate Final PDF</button>
+                    <button class="btn btn-teal" style="display:inline-flex;align-items:center;gap:4px;"
+                      onclick="submitForReview()"><i data-lucide="send" style="width:14px;height:14px;"></i>Submit to
+                      Authority</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="card">
+                <div class="card-hd">
+                  <div class="card-title">PDF Preview</div>
+                </div>
+                <div class="card-bd">
+                  <div class="pdf-preview">
+                    <div style="font-size:11px;color:rgba(255,255,255,.6);margin-bottom:10px">Preview — Final DSR Report
+                    </div>
+                    <div class="pdf-page-thumb">
+                      <div class="pdf-page-hd"><span>DISTRICT SURVEY REPORT</span></div>
+                      <div class="pdf-page-bd">
+                        <div class="pdf-line header"></div>
+                        <div class="pdf-line" style="height:8px;background:#e8eaf6;margin:6px 0"></div>
+                        <div class="pdf-line medium"></div>
+                        <div class="pdf-line short"></div>
+                        <div class="pdf-line"></div>
+                        <div class="pdf-line medium"></div>
+                        <div class="pdf-line short"></div>
+                        <div class="pdf-line"></div>
+                        <div class="pdf-line medium"></div>
+                        <div class="pdf-line" style="height:30px;background:#f5f5f5;margin:6px 0"></div>
+                        <div class="pdf-line short"></div>
+                        <div class="pdf-line medium"></div>
+                        <div class="pdf-line"></div>
+                      </div>
+                    </div>
+                    <div style="font-size:10px;color:rgba(255,255,255,.4);text-align:center">
+                      <span id="pdf-page-count">0</span> pages · Ready to generate
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+

@@ -1,0 +1,152 @@
+<!-- ═══ MODALS ═══ -->
+  <!-- Confirm Modal -->
+  <div id="modal-confirm" class="modal-overlay">
+    <div class="modal-box" style="max-width:400px; max-height: max-content;">
+      <div class="modal-hd">
+        <h3>Confirm Action</h3><button class="modal-close" onclick="closeModal('modal-confirm')">×</button>
+      </div>
+      <div class="modal-bd">
+        <p id="confirm-msg" style="font-size:14px; color:var(--text); font-weight: 500;"></p>
+      </div>
+      <div class="modal-ft">
+        <button class="btn btn-outline" onclick="closeModal('modal-confirm')">Cancel</button>
+        <button class="btn btn-danger" onclick="doConfirm()">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- New Project Modal -->
+  <div id="modal-project" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-hd">
+        <h3>Create New DSR Project</h3><button class="modal-close" onclick="closeModal('modal-project')">×</button>
+      </div>
+      <div class="modal-bd">
+        <div class="field-group">
+          <div class="field"><label>Report Title (optional)</label><input id="proj-title"
+              placeholder="District Survey Report for Sand Mining"></div>
+          <div class="field-row">
+            <div class="field"><label>District</label>
+              <select id="proj-district">
+                <option>Jalandhar</option>
+                <option>Ludhiana</option>
+                <option>Mansa</option>
+                <option>Hoshiarpur</option>
+                <option>Pathankot</option>
+                <option>Rupnagar</option>
+                <option>Tarn Taran</option>
+              </select>
+            </div>
+            <div class="field"><label>Year</label><input id="proj-year" value="2025-26"></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label>Mineral Type</label>
+              <select id="proj-mineral">
+                <option>Sand</option>
+                <option>RBM</option>
+                <option>Bajri</option>
+                <option>Gravel</option>
+              </select>
+            </div>
+            <div class="field"><label>River(s)</label><input id="proj-rivers" placeholder="Sutlej, Beas"></div>
+          </div>
+          <div class="field"><label>Prepared By</label><input id="proj-by" value="Sub-Divisional Committee"></div>
+        </div>
+      </div>
+      <div class="modal-ft">
+        <button class="btn btn-outline" onclick="closeModal('modal-project')">Cancel</button>
+        <button class="btn btn-saffron" onclick="createProject()">Create Project →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sign Modal -->
+  <div id="modal-sign" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-hd">
+        <h3 id="sign-modal-title">Digital Signature</h3><button class="modal-close"
+          onclick="closeModal('modal-sign')">×</button>
+      </div>
+      <div class="modal-bd">
+        <div id="sign-modal-content"></div>
+        <div class="notif notif-warn" style="margin-top:14px; display:flex; align-items:center; gap:8px;">
+          <i data-lucide="alert-triangle" style="width:16px; height:16px; flex-shrink:0;"></i>
+          <span>By signing, you certify the accuracy of the complete DSR report and EMGSM 2020 compliance.</span>
+        </div>
+        <div class="field" style="margin-top:14px"><label>OTP Verification (Demo: 123456)</label><input
+            class="otp-input" id="sign-otp" maxlength="6" placeholder="——————"
+            oninput="this.value=this.value.replace(/\D/g,'')"></div>
+      </div>
+      <div class="modal-ft">
+        <button class="btn btn-outline" onclick="closeModal('modal-sign')">Cancel</button>
+        <button class="btn btn-saffron" onclick="doSign()">Confirm & Sign →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Authority Sign Modal -->
+  <div id="modal-auth-sign" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-hd">
+        <h3>Authority E-Signature</h3><button class="modal-close" onclick="closeModal('modal-auth-sign')">×</button>
+      </div>
+      <div class="modal-bd">
+        <div id="auth-sign-content"></div>
+        <div class="notif notif-warn" style="margin-top:14px; display:flex; align-items:center; gap:8px;">
+          <i data-lucide="alert-triangle" style="width:16px; height:16px; flex-shrink:0;"></i>
+          <span>Sequential signing — your approval forwards to the next authority.</span>
+        </div>
+        <div class="field" style="margin-top:14px"><label>OTP (Demo: 123456)</label><input class="otp-input"
+            id="auth-otp" maxlength="6" placeholder="——————" oninput="this.value=this.value.replace(/\D/g,'')"></div>
+      </div>
+      <div class="modal-ft">
+        <button class="btn btn-outline" onclick="closeModal('modal-auth-sign')">Cancel</button>
+        <button class="btn btn-saffron" onclick="authoritySign()">Sign & Approve →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reviewer Floating Notes Box -->
+  <div id="reviewer-floating-notes" style="display:none; position:fixed; bottom:20px; right:20px; width:340px; background:var(--card); border:1px solid var(--border); box-shadow:0 8px 30px rgba(0,0,0,0.12); border-radius:12px; z-index:9999; flex-direction:column; overflow:hidden;">
+    <div style="background:var(--primary); color:white; padding:12px 16px; display:flex; justify-content:space-between; align-items:center;">
+      <div style="font-weight:700; font-size:13px; display:flex; align-items:center; gap:8px;">
+        <i data-lucide="edit-3" style="width:16px; height:16px;"></i> Reviewer Notes
+      </div>
+      <div style="font-size:11px; opacity:0.8; font-weight:600; text-transform:uppercase;" id="reviewer-notes-section-title">FRONT MATTER</div>
+    </div>
+    <div style="padding:16px;">
+      <label style="display:block; font-size:12px; font-weight:600; color:var(--text-mid); margin-bottom:8px;">Notes for this section:</label>
+      <textarea id="reviewer-section-note" oninput="saveReviewerNote()" style="width:100%; box-sizing:border-box; height:100px; padding:10px; border:1px solid var(--border-2); border-radius:8px; font-size:13px; font-family:inherit; resize:none;" placeholder="Write any required changes or feedback here..."></textarea>
+    </div>
+    <div style="padding:12px 16px; border-top:1px solid var(--border); background:var(--bg); display:flex; justify-content:space-between; align-items:center;">
+      <span style="font-size:11px; color:var(--text-soft);">Auto-saved locally</span>
+      <button class="btn btn-saffron btn-sm" onclick="openReviewModal()">Review & Return →</button>
+    </div>
+  </div>
+
+  <!-- Review Modal -->
+  <div id="modal-review" class="modal-overlay">
+    <div class="modal-box" style="max-width:600px;">
+      <div class="modal-hd">
+        <h3 class="modal-title">Return Project for Modifications</h3>
+        <button class="modal-close" onclick="closeModal('modal-review')">×</button>
+      </div>
+      <div class="modal-bd">
+        <p style="font-size:13.5px; color:var(--text-mid); margin-bottom:16px;">Review the aggregated notes below. This will be sent back to the Report Coordinator (Data Entry) for corrections.</p>
+        <div class="field">
+          <label>Aggregated Review Notes</label>
+          <textarea id="review-aggregated-notes" rows="10" style="width:100%; box-sizing:border-box; font-family:monospace; font-size:12px; padding:12px; border:1px solid var(--border-2); border-radius:8px;"></textarea>
+        </div>
+      </div>
+      <div class="modal-ft">
+        <button class="btn btn-outline" onclick="closeModal('modal-review')">Cancel</button>
+        <button class="btn btn-danger" onclick="submitReviewReturn()">Return to Data Entry</button>
+        <button class="btn btn-green" onclick="submitReviewApprove()">Approve (No Changes)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  

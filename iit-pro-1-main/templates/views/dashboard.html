@@ -1,0 +1,168 @@
+        <!-- ═══ DASHBOARD ═══ -->
+        <div id="view-dashboard" class="view active" style="position: relative; z-index: 1;">
+
+
+
+          <!-- Reviewer Banner for Data Entry Officer -->
+          <div id="dash-review-banner" class="notif notif-warn" style="display:none; margin-bottom: 20px; align-items: start; gap: 12px; border: 1px solid #f59e0b; background: #fffbeb;">
+            <i data-lucide="alert-triangle" style="color: #f59e0b; flex-shrink:0;"></i>
+            <div style="flex:1;">
+              <strong style="color: #b45309; font-size: 14px; display:block; margin-bottom:4px;">Report Returned for Review</strong>
+              <div id="dash-review-banner-text" style="color: #92400e; font-size: 13px; white-space: pre-wrap;"></div>
+            </div>
+          </div>
+
+          <div class="hero-banner">
+
+            <!-- <img src="logo/COE-SENSRS-2.jpeg" alt="DSR Portal Banner" class="hero-image"> -->
+
+            <div class="hero-overlay">
+              <div class="hero-eyebrow">
+                Government of Punjab · EMGSM 2020 · IIT Ropar Research Cell
+              </div>
+
+              <div class="hero-title">
+                District Survey Report<br>
+                Automation Portal
+              </div>
+
+              <div class="hero-sub">
+                Prepare, review, and digitally sign DSRs for sand mining across all Punjab districts.
+              </div>
+
+              <div class="hero-actions">
+                <button class="btn btn-saffron" onclick="newProjectModal()">
+                  + Create New DSR Project
+                </button>
+
+                <button class="btn btn-outline" onclick="showView('projects',null)">
+                  View All Projects →
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- District Filter & Active District Selector -->
+          <div class="card"
+            style="margin-bottom:20px; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; background:var(--card); border:1px solid var(--border);">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <i data-lucide="filter" style="width:16px; height:16px; color:var(--text-soft);"></i>
+              <span
+                style="font-size:12.5px; font-weight:700; color:var(--text-mid); text-transform:uppercase; letter-spacing:.05em;">District
+                Context:</span>
+              <select id="dash-district-filter" onchange="filterDashboardByDistrict(this.value)"
+                style="padding:8px 16px; border:1px solid var(--border-2); border-radius:var(--r-md); background:var(--bg); color:var(--text); font-size:13.5px; font-weight:700; outline:none; cursor:pointer; transition:border-color .2s;">
+                <option value="ALL">All Districts (Punjab)</option>
+                <option>Jalandhar</option>
+                <option>Ludhiana</option>
+                <option>Mansa</option>
+                <option>Hoshiarpur</option>
+                <option>Pathankot</option>
+                <option>Rupnagar</option>
+                <option>Tarn Taran</option>
+              </select>
+            </div>
+            <div
+              style="font-size:13px; font-weight:600; color:var(--text-soft); display:flex; align-items:center; gap:8px;">
+              Active District Highlight: <span id="dash-active-district-badge" class="badge"
+                style="background:var(--off); color:var(--text-soft);">None</span>
+            </div>
+          </div>
+
+          <div class="g4" style="margin-bottom:20px">
+            <div class="stat-card" style="--accent:var(--teal);--icon-bg:rgba(12,122,114,.1)">
+              <div class="stat-accent"></div>
+              <div class="stat-icon"><i data-lucide="folder"></i></div>
+              <div class="stat-lbl">Total Projects</div>
+              <div class="stat-val" id="d-total">0</div>
+              <div class="stat-info">Active DSR projects</div>
+            </div>
+            <div class="stat-card" style="--accent:var(--green);--icon-bg:rgba(21,128,61,.1)">
+              <div class="stat-accent"></div>
+              <div class="stat-icon"><i data-lucide="check-circle-2"></i></div>
+              <div class="stat-lbl">Completed</div>
+              <div class="stat-val" id="d-done">0</div>
+              <div class="stat-info">Reports finalized</div>
+            </div>
+            <div class="stat-card" style="--accent:#6366f1;--icon-bg:rgba(99,102,241,.1)">
+              <div class="stat-accent"></div>
+              <div class="stat-icon"><i data-lucide="clock"></i></div>
+              <div class="stat-lbl">Pending Signatures</div>
+              <div class="stat-val" id="d-sigs">0</div>
+              <div class="stat-info">Awaiting authorities</div>
+            </div>
+            <div class="stat-card" style="--accent:var(--saffron);--icon-bg:rgba(224,123,0,.1)">
+              <div class="stat-accent"></div>
+              <div class="stat-icon"><i data-lucide="file-down"></i></div>
+              <div class="stat-lbl">PDFs Generated</div>
+              <div class="stat-val" id="d-pdfs">0</div>
+              <div class="stat-info">Final reports ready</div>
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns: 2.2fr 1fr; gap: 24px; align-items: start;">
+            <div style="display:flex; flex-direction:column; gap:20px;">
+              <div class="card">
+                <div class="card-hd">
+                  <div>
+                    <div class="card-title">Recent Projects</div>
+                    <div class="card-sub">Click to open and edit</div>
+                  </div><button class="btn btn-outline btn-xs" onclick="showView('projects',null)">See All</button>
+                </div>
+                <div class="card-bd" id="dash-recent"></div>
+              </div>
+              <div class="card">
+                <div class="card-hd">
+                  <div class="card-title">DSR Workflow Overview</div>
+                </div>
+                <div class="card-bd">
+                  <div class="timeline">
+                    <div class="tl-item">
+                      <div class="tl-line"></div>
+                      <div class="tl-dot done">✓</div>
+                      <div class="tl-content">
+                        <div class="tl-title">Project Initialized</div>
+                        <div class="tl-sub">Basic details, district, year, mineral type</div>
+                      </div>
+                    </div>
+                    <div class="tl-item">
+                      <div class="tl-line"></div>
+                      <div class="tl-dot active">2</div>
+                      <div class="tl-content">
+                        <div class="tl-title">Data Entry & Upload</div>
+                        <div class="tl-sub">Front matter, chapters, plates, graphs, annexures, tables</div>
+                      </div>
+                    </div>
+                    <div class="tl-item">
+                      <div class="tl-line"></div>
+                      <div class="tl-dot">3</div>
+                      <div class="tl-content">
+                        <div class="tl-title">Generate Final PDF</div>
+                        <div class="tl-sub">Professional government-format report</div>
+                      </div>
+                    </div>
+                    <div class="tl-item">
+                      <div class="tl-line"></div>
+                      <div class="tl-dot">4</div>
+                      <div class="tl-content">
+                        <div class="tl-title">Submit for Approval</div>
+                        <div class="tl-sub">Send to authority signing dashboard</div>
+                      </div>
+                    </div>
+                    <div class="tl-item">
+                      <div class="tl-dot">5</div>
+                      <div class="tl-content">
+                        <div class="tl-title">Sequential E-Signing</div>
+                        <div class="tl-sub">5-level authority hierarchy · Final signed PDF</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:20px;" id="dash-right-sidebar">
+              <!-- District Legend and active district card will be dynamically populated here -->
+            </div>
+          </div>
+        </div>
+

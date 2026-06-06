@@ -1,0 +1,119 @@
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar" onmouseenter="expandSidebar()" onmouseleave="collapseSidebar()">
+      <div class="sb-head">
+        <div class="sb-logo">
+          <div class="sb-logo-mark">
+            <img src="logo/CoE-SEnSRS.jpeg" alt="Logo">
+          </div>
+          <div class="sb-logo-text">
+            <h2>DSR Portal</h2>
+            <p>IIT Ropar · Punjab</p>
+          </div>
+        </div>
+      </div>
+      <div class="sb-user">
+        <div class="sb-avatar" id="sb-avatar">RK</div>
+        <div>
+          <div class="sb-uname" id="sb-uname">User Name</div>
+          <div class="sb-urole" id="sb-urole">Report Coordinator</div>
+        </div>
+      </div>
+      <nav class="sb-nav">
+        <div class="sb-section" id="overview-nav" style="display:none;">
+          <!-- Overview links moved to topbar -->
+        </div>
+        <div class="sb-section" id="report-nav" style="display:none">
+          <div class="sb-section-lbl">DSR Sections</div>
+          <button class="sb-item" onclick="showView('front-matter',this)"><span class="sb-ico"><i
+                data-lucide="file-text"></i></span>Front Matter</button>
+          <button class="sb-item" onclick="showView('chapters',this)"><span class="sb-ico"><i
+                data-lucide="book-open"></i></span>Chapters (10)</button>
+          <button class="sb-item" onclick="showView('plates',this)"><span class="sb-ico"><i
+                data-lucide="map"></i></span>Plate Section</button>
+          <button class="sb-item" onclick="showView('graphs',this)" style="padding-left: 24px; font-size: 11px;"><span
+              class="sb-ico" style="width: 24px; height: 24px; font-size: 11px;"><i
+                data-lucide="line-chart"></i></span>Cross Section Graphs</button>
+        </div>
+        <div class="sb-section" id="annexure-nav" style="display:none">
+          <div class="sb-section-lbl">Annexures</div>
+          <div style="position: relative;">
+            <button class="sb-item" onclick="toggleSubMenu('flyout-anx1'); showView('anx1',this)"><span class="sb-ico">Ⅰ</span>Annexure I — Sources</button>
+            <div id="flyout-anx1" class="flyout-menu" style="display:none; position:absolute; left:calc(100% + 5px); top:0; background:var(--card); border:1px solid var(--border); border-radius:8px; padding:6px; box-shadow:0 4px 12px rgba(0,0,0,0.1); z-index:100; min-width:160px;">
+              <button class="sb-item" onclick="scrollToSection('anx1', 'anx1-rivers', this.parentElement.previousElementSibling); toggleSubMenu('flyout-anx1')" style="font-size: 12.5px; min-height: 32px; padding: 6px 12px;">a) Rivers</button>
+              <button class="sb-item" onclick="scrollToSection('anx1', 'anx1-desilt', this.parentElement.previousElementSibling); toggleSubMenu('flyout-anx1')" style="font-size: 12.5px; min-height: 32px; padding: 6px 12px;">b) De-Siltation</button>
+              <button class="sb-item" onclick="scrollToSection('anx1', 'anx1-patta', this.parentElement.previousElementSibling); toggleSubMenu('flyout-anx1')" style="font-size: 12.5px; min-height: 32px; padding: 6px 12px;">c) Patta Lands</button>
+              <button class="sb-item" onclick="scrollToSection('anx1', 'anx1-msand', this.parentElement.previousElementSibling); toggleSubMenu('flyout-anx1')" style="font-size: 12.5px; min-height: 32px; padding: 6px 12px;">d) M-Sand</button>
+            </div>
+          </div>
+          <div style="position: relative;">
+            <button class="sb-item" onclick="toggleSubMenu('flyout-anx2'); showView('anx2',this)"><span class="sb-ico">Ⅱ</span>Annexure II — Leases</button>
+            <div id="flyout-anx2" class="flyout-menu" style="display:none; position:absolute; left:calc(100% + 5px); top:0; background:var(--card); border:1px solid var(--border); border-radius:8px; padding:6px; box-shadow:0 4px 12px rgba(0,0,0,0.1); z-index:100; min-width:160px;">
+              <button class="sb-item" onclick="scrollToSection('anx2', 'anx2-leases', this.parentElement.previousElementSibling); toggleSubMenu('flyout-anx2')" style="font-size: 12.5px; min-height: 32px; padding: 6px 12px;">Details of Leases</button>
+              <button class="sb-item" onclick="scrollToSection('anx2', 'anx2-patta', this.parentElement.previousElementSibling); toggleSubMenu('flyout-anx2')" style="font-size: 12.5px; min-height: 32px; padding: 6px 12px;">Details of Patta</button>
+              <button class="sb-item" onclick="scrollToSection('anx2', 'anx2-desilt', this.parentElement.previousElementSibling); toggleSubMenu('flyout-anx2')" style="font-size: 12.5px; min-height: 32px; padding: 6px 12px;">Details of De-siltation</button>
+              <button class="sb-item" onclick="scrollToSection('anx2', 'anx2-msand', this.parentElement.previousElementSibling); toggleSubMenu('flyout-anx2')" style="font-size: 12.5px; min-height: 32px; padding: 6px 12px;">Details of M-Sand</button>
+            </div>
+          </div>
+          <div style="position: relative;">
+            <button class="sb-item" onclick="toggleSubMenu('flyout-anx3'); showView('anx3',this)"><span class="sb-ico">Ⅲ</span>Annexure III — Clusters</button>
+            <div id="flyout-anx3" class="flyout-menu" style="display:none; position:absolute; left:calc(100% + 5px); top:0; background:var(--card); border:1px solid var(--border); border-radius:8px; padding:6px; box-shadow:0 4px 12px rgba(0,0,0,0.1); z-index:100; min-width:160px;">
+              <button class="sb-item" onclick="scrollToSection('anx3', 'anx3-clusters', this.parentElement.previousElementSibling); toggleSubMenu('flyout-anx3')" style="font-size: 12.5px; min-height: 32px; padding: 6px 12px;">Clusters</button>
+              <button class="sb-item" onclick="scrollToSection('anx3', 'anx3-contiguous', this.parentElement.previousElementSibling); toggleSubMenu('flyout-anx3')" style="font-size: 12.5px; min-height: 32px; padding: 6px 12px;">Contiguous Clusters</button>
+            </div>
+          </div>
+          <div style="position: relative;">
+            <button class="sb-item" onclick="toggleSubMenu('flyout-anx4'); showView('anx4',this)"><span class="sb-ico">Ⅳ</span>Annexure IV — Transport</button>
+            <div id="flyout-anx4" class="flyout-menu" style="display:none; position:absolute; left:calc(100% + 5px); top:0; background:var(--card); border:1px solid var(--border); border-radius:8px; padding:6px; box-shadow:0 4px 12px rgba(0,0,0,0.1); z-index:100; min-width:160px;">
+              <button class="sb-item" onclick="scrollToSection('anx4', 'individual-routes-container', this.parentElement.previousElementSibling); toggleSubMenu('flyout-anx4')" style="font-size: 12.5px; min-height: 32px; padding: 6px 12px;">Individual Routes</button>
+              <button class="sb-item" onclick="scrollToSection('anx4', 'cluster-routes-container', this.parentElement.previousElementSibling); toggleSubMenu('flyout-anx4')" style="font-size: 12.5px; min-height: 32px; padding: 6px 12px;">Cluster Routes</button>
+            </div>
+          </div>
+          <button class="sb-item" onclick="showView('anx5',this)"><span class="sb-ico">Ⅴ</span>Annexure V — Bench Mark &
+            CORS</button>
+          <button class="sb-item" onclick="showView('anx6',this)"><span class="sb-ico">Ⅵ</span>Annexure VI — Final
+            Cluster Details</button>
+          <button class="sb-item" onclick="showView('anx7',this)"><span class="sb-ico">Ⅶ</span>Annexure VII — Transportation
+            Routes</button>
+          <button class="sb-item" onclick="showView('annexures-extra',this)"><span class="sb-ico"><i
+                data-lucide="paperclip"></i></span>More Annexures</button>
+        </div>
+        <div class="sb-section" id="tables-nav" style="display:none">
+          <div class="sb-section-lbl">Data Tables</div>
+          <button class="sb-item" onclick="showView('demand-table',this)"><span class="sb-ico"><i
+                data-lucide="bar-chart-3"></i></span>Demand Table</button>
+          <button class="sb-item" onclick="showView('auction-table',this)"><span class="sb-ico"><i
+                data-lucide="landmark"></i></span>Auctioned Sites</button>
+          <button class="sb-item" onclick="showView('summary-table',this)"><span class="sb-ico"><i
+                data-lucide="pie-chart"></i></span>Source Summary</button>
+          <button class="sb-item" onclick="showView('benchmark-table',this)"><span class="sb-ico"><i
+                data-lucide="map-pin"></i></span>Bench Mark & CORS</button>
+        </div>
+        <div class="sb-section" id="finalize-nav" style="display:none">
+          <div class="sb-section-lbl">Finalize</div>
+          <button class="sb-item" onclick="showView('esign',this)"><span class="sb-ico"><i
+                data-lucide="pen-tool"></i></span>E-Signatures<span class="sb-badge sb-badge-red"
+              id="sb-pending-sigs">5</span></button>
+          <button class="btn sb-item" onclick="showView('generate',this)"><span class="sb-ico"><i
+                data-lucide="download"></i></span>Generate PDF</button>
+          <button class="sb-item" onclick="showView('history',this)"><span class="sb-ico"><i
+                data-lucide="history"></i></span>Report History</button>
+          <button class="sb-item" onclick="showView('users',this)"><span class="sb-ico"><i
+                data-lucide="users"></i></span>User Management</button>
+          <button class="sb-item" id="nav-audit-logs" onclick="showView('audit-logs',this)" style="display:none"><span class="sb-ico"><i
+                data-lucide="clipboard-list"></i></span>Audit Logs</button>
+        </div>
+        <div class="sb-section" style="margin-top: auto; padding-top: 12px; border-top: 1px solid var(--border);">
+          <div class="sb-section-lbl"> Districts</div>
+          <div id="sidebar-districts-legend" style="display: flex; flex-direction: column; gap: 4px; padding: 4px 8px;">
+          </div>
+        </div>
+      </nav>
+      <div class="sb-bottom">
+        <div class="sb-status-row"><span class="status-dot"></span><span class="status-txt">EMGSM 2020 Compliant</span>
+        </div>
+        <button class="sb-logout" onclick="doLogout()"><i data-lucide="log-out"
+            style="width:14px;height:14px;margin-right:7px;"></i>Logout</button>
+      </div>
+    </aside>
+
+

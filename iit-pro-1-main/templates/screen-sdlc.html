@@ -1,0 +1,159 @@
+<!-- ═══════════════════════════════════════════════════════════════
+     SCREEN 4 — SDLC COMPARISON PORTAL
+═══════════════════════════════════════════════════════════════ -->
+<div id="screen-sdlc" class="screen" style="display: none; flex-direction: column; min-height: 100vh; background: var(--bg);">
+  <div class="authority-topbar" style="background: linear-gradient(135deg, #0f766e, #0d9488); border-bottom: 2px solid #0f766e; box-shadow: 0 4px 15px rgba(13, 148, 136, 0.15); height: 72px;">
+    <div style="display: flex; align-items: center; gap: 15px;">
+      <img src="logo/CoE-SEnSRS.jpeg" alt="DSR Logo" style="width: 50px; height: 50px; object-fit: contain; border-radius: 8px; border: 2px solid rgba(255,255,255,0.2);">
+      <div>
+        <h1 style="margin: 0; font-family: 'DM Sans', sans-serif; font-size: 20px; font-weight: 700; color: #ffffff; letter-spacing: -0.02em;">DSR SDLC PORTAL</h1>
+        <p style="margin: 0; font-size: 11px; color: rgba(255,255,255,0.7); font-weight: 500;">Scientific Data Verification & Comparison Dashboard</p>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 20px;">
+      <div style="text-align: right;">
+        <span style="font-size: 13px; font-weight: 700; color: #ffffff; display: block;" id="sdlc-user-name">SDLC Review Team</span>
+        <span style="font-size: 11px; color: rgba(255,255,255,0.6);" id="sdlc-user-role">External Verifier</span>
+      </div>
+      <button type="button" class="tb-action-btn" id="sdlc-theme-toggle" onclick="toggleDarkMode()" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; transition: all 0.2s;">
+        <i data-lucide="moon" style="width: 18px; height: 18px;"></i>
+      </button>
+      <button class="btn btn-saffron btn-sm" onclick="doLogout()" style="padding: 10px 18px; font-weight: 700; border-radius: 8px;">Logout</button>
+    </div>
+  </div>
+
+  <div class="authority-body" style="padding: 30px 40px; max-width: 1400px; margin: 0 auto; width: 100%; box-sizing: border-box; flex: 1;">
+    <!-- Active Project Selection Panel -->
+    <div class="card" style="margin-bottom: 24px; padding: 20px 24px; background: var(--card); border: 1px solid var(--border); box-shadow: 0 4px 20px rgba(0,0,0,0.03); border-radius: 16px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+      <div style="display: flex; align-items: center; gap: 15px;">
+        <div style="background: rgba(13, 148, 136, 0.1); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #0d9488;">
+          <i data-lucide="folder-open" style="width: 24px; height: 24px;"></i>
+        </div>
+        <div>
+          <label style="font-size: 11px; font-weight: 700; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 2px;">DSR Project Context</label>
+          <select id="sdlc-project-select" onchange="onSdlcProjectChange(this.value)" style="padding: 8px 16px; font-size: 15px; font-weight: 700; border: 1.5px solid var(--border-2); border-radius: 10px; background: var(--bg); color: var(--text); outline: none; cursor: pointer; min-width: 280px; transition: all 0.2s;">
+            <option value="">-- Select DSR Project --</option>
+          </select>
+        </div>
+      </div>
+      
+      <div id="sdlc-project-badge-container" style="display: flex; align-items: center; gap: 12px;">
+        <!-- Project details injected here -->
+      </div>
+    </div>
+
+    <!-- Main comparison workspace -->
+    <div id="sdlc-workspace" style="display: none;">
+      <!-- Navigation Tabs for Annexures 4, 5, 6, 7 -->
+      <div style="display: flex; gap: 10px; border-bottom: 1.5px solid var(--border); margin-bottom: 24px; padding-bottom: 2px; overflow-x: auto;">
+        <button class="sdlc-nav-tab active" onclick="switchSdlcTab(4, this)">Annexure IV (Transportation)</button>
+        <button class="sdlc-nav-tab" onclick="switchSdlcTab(5, this)">Annexure V (Bench Mark & CORS)</button>
+        <button class="sdlc-nav-tab" onclick="switchSdlcTab(6, this)">Annexure VI (Clusters)</button>
+        <button class="sdlc-nav-tab" onclick="switchSdlcTab(7, this)">Annexure VII (Routes)</button>
+      </div>
+
+      <!-- Tab Content Area -->
+      <div class="card" style="padding: 30px; background: var(--card); border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 4px 25px rgba(0,0,0,0.02);">
+        
+        <!-- Header row inside card with Template download and Excel upload -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 15px;">
+          <div>
+            <h2 id="sdlc-annexure-title" style="margin: 0; font-family: 'DM Sans', sans-serif; font-size: 22px; font-weight: 700; color: var(--text);">Annexure IV — Transportation Routes Comparison</h2>
+            <p id="sdlc-annexure-desc" style="margin: 4px 0 0 0; font-size: 13.5px; color: var(--text-soft);">Upload SDLC survey report in Excel format to align and verify details.</p>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <button class="btn btn-outline" onclick="downloadSdlcTemplate()" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; font-weight: 600; font-size: 13.5px;">
+              <i data-lucide="file-spreadsheet" style="width: 16px; height: 16px; color: #10b981;"></i>
+              <span>Download Excel Template</span>
+            </button>
+            <label class="btn btn-saffron" style="cursor: pointer; display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; font-weight: 600; font-size: 13.5px; margin-bottom: 0;">
+              <i data-lucide="upload" style="width: 16px; height: 16px;"></i>
+              <span>Upload SDLC Excel Report</span>
+              <input type="file" accept=".xlsx,.xls" id="sdlc-excel-input" hidden onchange="handleSdlcExcelUpload(event)">
+            </label>
+          </div>
+        </div>
+
+        <!-- Notification banner for comparison status -->
+        <div id="sdlc-comparison-alert" style="display: none; margin-bottom: 20px;"></div>
+
+        <!-- Side-by-side or comparison grid -->
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          
+          <!-- Actions panel for saving updates -->
+          <div id="sdlc-save-panel" style="display: none; justify-content: flex-end; padding: 15px 20px; background: var(--off); border: 1.5px solid var(--border); border-radius: 12px; align-items: center; gap: 15px;">
+            <span style="font-size: 13.5px; font-weight: 600; color: var(--text-mid);" id="sdlc-parsed-status-msg"></span>
+            <button class="btn btn-teal" onclick="applySdlcUpdatesToProject()" style="background: #0d9488; color: white; display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px;">
+              <i data-lucide="check-circle" style="width: 16px; height: 16px;"></i>
+              <span>Save & Update DSR Annexure Data</span>
+            </button>
+          </div>
+
+          <!-- Comparison View Section -->
+          <div>
+            <h3 style="font-size: 15px; font-weight: 800; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;">Visual Comparison Report</h3>
+            
+            <div class="tbl-wrap" style="overflow-x: auto; border: 1.5px solid var(--border); border-radius: 12px; box-shadow: var(--sh-sm);">
+              <table class="anx-tbl" id="sdlc-comparison-table" style="min-width: 100%; border-collapse: collapse;">
+                <!-- Dynamically populated comparison headers and rows -->
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Empty state when no project selected -->
+    <div id="sdlc-empty-state" class="card" style="padding: 60px 20px; text-align: center; background: var(--card); border: 1px dashed var(--border); border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 15px;">
+      <div style="background: rgba(13, 148, 136, 0.08); width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #0d9488; margin-bottom: 10px;">
+        <i data-lucide="sliders" style="width: 32px; height: 32px;"></i>
+      </div>
+      <h3 style="margin: 0; font-family: 'DM Sans', sans-serif; font-size: 18px; font-weight: 700; color: var(--text);">No DSR Project Selected</h3>
+      <p style="margin: 0; font-size: 14px; color: var(--text-soft); max-width: 360px; line-height: 1.5;">Please select a DSR project context from the dropdown at the top to upload Excel survey files and compare data.</p>
+    </div>
+  </div>
+
+  <style>
+    .sdlc-nav-tab {
+      background: none;
+      border: none;
+      padding: 12px 20px;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--text-soft);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .sdlc-nav-tab:hover {
+      color: #0d9488;
+    }
+    .sdlc-nav-tab.active {
+      color: #0d9488;
+      border-bottom-color: #0d9488;
+    }
+    .sdlc-row-match {
+      background-color: rgba(16, 185, 129, 0.06) !important;
+    }
+    .sdlc-row-mismatch {
+      background-color: rgba(239, 68, 68, 0.06) !important;
+    }
+    .sdlc-row-added {
+      background-color: rgba(59, 130, 246, 0.06) !important;
+    }
+    .sdlc-cell-diff {
+      color: #b91c1c !important;
+      font-weight: bold;
+      background-color: rgba(239, 68, 68, 0.12);
+      border-radius: 4px;
+      padding: 2px 6px;
+    }
+    .sdlc-cell-same {
+      color: #047857 !important;
+      font-weight: 600;
+    }
+  </style>
+</div>

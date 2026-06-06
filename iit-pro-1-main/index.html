@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DSR REPORT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Inter',sans-serif;
+background:white;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:25px 60px;
+}
+
+.logo{
+font-size:52px;
+font-weight:800;
+}
+
+nav{
+display:flex;
+gap:30px;
+}
+
+nav a{
+text-decoration:none;
+color:black;
+font-size:14px;
+}
+
+.hero{
+height:70vh;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+
+text-align:center;
+
+background:
+radial-gradient(circle at 15% 40%, #e7f4bf 0%, transparent 35%),
+radial-gradient(circle at 80% 20%, #fff2b8 0%, transparent 35%),
+radial-gradient(circle at 65% 80%, #ffdbe7 0%, transparent 30%),
+transparent;
+}
+
+.hero p{
+font-size:24px;
+color:#6b7280;
+margin-bottom:20px;
+}
+
+.hero h1{
+font-size:72px;
+font-weight:800;
+line-height:1.1;
+}
+
+.buttons{
+margin-top:35px;
+display:flex;
+gap:15px;
+}
+
+.login-btn{
+background:black;
+color:white;
+border:none;
+padding:14px 28px;
+border-radius:10px;
+cursor:pointer;
+}
+.signup-btn{
+    background:rgb(251, 251, 251);
+color:black;
+border:none;
+padding:14px 28px;
+border-radius:10px;
+cursor:pointer;
+}
+
+.secondary-btn{
+background:white;
+border:1px solid #d1d5db;
+padding:14px 28px;
+border-radius:10px;
+cursor:pointer;
+}
+
+footer{
+border-top:1px solid #e5e7eb;
+padding:60px;
+
+display:grid;
+grid-template-columns:2fr 1fr 1fr 1fr;
+gap:40px;
+}
+
+footer p{
+margin-top:10px;
+color:#6b7280;
+}
+
+</style>
+
+</head>
+<body>
+<!-- UNIVERSAL TRANSLUCENT BACKGROUND WATERMARK -->
+<img src="logo/CoE-SEnSRS.jpeg"
+  style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 800px; height: 800px; max-width: 90%; max-height: 90%; opacity: 0.08; pointer-events: none; z-index: 0; object-fit: contain;"
+  alt="Watermark">
+
+<header style="position:relative; z-index:10;">
+
+<div class="logo">
+DSR REPORT
+</div>
+
+<nav style="align-items: center;">
+<a href="#">Home</a>
+<a href="#">My Projects</a>
+<a href="#">Report Workflow</a>
+<a href="#">Contact</a>
+<a href="login.html">Login</a>
+<label class="theme-switch-wrapper" style="margin-left: 20px;">
+  <div class="theme-switch" onclick="toggleDarkMode()">
+    <div class="theme-switch-slider">
+      <i data-lucide="moon"></i>
+    </div>
+  </div>
+</label>
+</nav>
+
+</header>
+
+<section class="hero" style="position:relative; z-index:1;">
+
+<p>Secured Way For Reports</p>
+
+<h1>
+Build a Digitized<br>
+District Survey Report
+</h1>
+
+<div class="buttons">
+
+<button class="login-btn"
+onclick="window.location.href='login.html'">
+Login
+</button>
+
+<button class = " signup-btn"
+onclick= "window.location.href='login.html'">
+Sign Up
+</button>
+
+</div>
+</button>
+
+
+
+
+</div>
+
+</section>
+
+<footer>
+
+<div>
+<h3>Namedly</h3>
+<p>Descriptive line about what your company does.</p>
+</div>
+
+<div>
+<h4>Features</h4>
+<p>Core features</p>
+<p>Pro experience</p>
+<p>Integrations</p>
+</div>
+
+<div>
+<h4>Learn More</h4>
+<p>Blog</p>
+<p>Case studies</p>
+<p>Customer stories</p>
+</div>
+
+<div>
+<h4>Support</h4>
+<p>Contact</p>
+<p>Support</p>
+<p>Legal</p>
+</div>
+
+</footer>
+
+</footer>
+
+<script src="js/theme.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>
